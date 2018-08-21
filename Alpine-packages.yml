@@ -1,0 +1,27 @@
+#
+# Define the packages that should not be installed with none
+#
+distro_packages:
+# JDK 8
+  - openjdk8
+
+# MAVEN
+  - maven
+
+# GRADLE
+  - gradle
+
+# MySql
+  - mysql
+
+# Redis
+  - redis
+
+# Chrome
+  - chromium
+
+# Node
+  - nodejs
+
+# npm
+  - npm
