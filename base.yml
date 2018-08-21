@@ -1,0 +1,86 @@
+---
+- name: Eng.Faster Team Base Playbook
+  hosts: vdi
+  become: true
+  
+  tasks:
+    
+    - name: Print selected OS
+      debug: msg="Selected OS -> {{ ansible_distribution }}"
+        
+    - name: Include the distribution var file
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+        - "{{ ansible_distribution }}.yml"
+      
+    - name: JDK 8+
+      package:
+        name: "{{ jdk8_package_name }}"
+        state: latest
+      when: jdk8_package_name != "none"
+        
+    - name: Maven
+      package:
+        name: "{{ maven_package_name }}"
+        state: latest
+      when: maven_package_name != "none"
+        
+    - name: Gradle
+      package:
+        name: "{{ gradle_package_name }}"
+        state: latest
+      when: gradle_package_name != "none"
+    
+    - name: IntelliJ IDEA
+      package:
+        name: "{{ intellij_package_name }}"
+        state: latest
+      when: intellij_package_name != "none"
+    
+    - name: Yourkit
+      package:
+        name: "{{ yourkit_package_name }}"
+        state: latest
+      when: yourkit_package_name != "none"
+    
+    - name: Docker
+      package:
+        name: "{{ docker_package_name }}"
+        state: latest
+      when: docker_package_name != "none"
+      
+    - name: MySQL
+      package:
+        name: "{{ mysql_package_name }}"
+        state: latest
+      when: mysql_package_name != "none"
+    
+    - name: Redis
+      package:
+        name: "{{ redis_package_name }}"
+        state: latest
+      when: redis_package_name != "none"    
+    
+    - name: Chrome
+      package:
+        name: "{{ chrome_package_name }}"
+        state: latest
+      when: chrome_package_name != "none" 
+      
+    - name: Node
+      package:
+        name: "{{ node_package_name }}"
+        state: latest
+      when: node_package_name != "none"
+      
+    - name: npm
+      package:
+        name: "{{ npm_package_name }}"
+        state: latest
+      when: npm_package_name != "none"
+    
+    - name: Oracle SQL Developer
+      debug:
+        msg: "Installing Oracle SQL Developer"
+      
