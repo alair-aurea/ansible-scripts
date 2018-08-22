@@ -11,7 +11,7 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 4. Execute `ansible-playbook -i inventories/base.inventory -e HOSTS=local playbooks/base.yml` or use the `.inventory` file you created. Use the appropriate value
 in the `HOSTS` variable to select the intended host definition.
 
-##Example of inventory file
+## Example of inventory file
 
 ```
 [local]
