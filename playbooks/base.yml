@@ -2,39 +2,45 @@
 - name: Eng.Faster Team Base Playbook
   hosts: "{{ HOSTS }}"
   become: true
-  gather_facts: False
- 
-  pre_tasks:
-    - name: Install python for Ansible
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-simplejson)
-      register: output
-      changed_when: output.stdout != ""
-      tags: always
-    - setup: # aka gather_facts
  
   tasks:
     
     - name: Print selected OS
-      debug: msg="Selected OS -> {{ ansible_distribution }}"
+      debug: msg="Selected OS -> {{ ansible_distribution }}; Major version -> {{ ansible_distribution_major_version}}"
         
     
+    # Run distro specific pre tasks to more complex provisioning
+    - name: Execute OS specific pre tasks
+      include_tasks: "{{ item }}"
+      with_first_found:
+        - files:
+          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-pre-tasks.yml"
+          - "{{ ansible_distribution }}-pre-tasks.yml"
+          skip: true
+      
+    
     # Include the package list file for the target distribution
-    - name: Include the distribution var file
+    - name: Include OS packages to be installed
       include_vars: "{{ item }}"
       with_first_found:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-packages.yml"
-        - "{{ ansible_distribution }}-packages.yml"
+        - files:
+          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-packages.yml"
+          - "{{ ansible_distribution }}-packages.yml"
+          skip: true
+      
       
     # Install the packages available on the target distribution
-    - name: Install distro available packages
+    - name: Install OS available packages
       package:
         name: "{{ distro_packages }}"
         state: latest
     
-    # Run distro specific tasks to more complex provisioning
-    - name: Include Distro specific tasks
+    # Run OS specific tasks to more complex provisioning
+    - name: Execute OS specific tasks
       include_tasks: "{{ item }}"
       with_first_found:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-tasks.yml"
-        - "{{ ansible_distribution }}-tasks.yml"
+        - files:
+          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-post-tasks.yml"
+          - "{{ ansible_distribution }}-post-tasks.yml"
+          skip: true
     

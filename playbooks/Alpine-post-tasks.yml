@@ -1,10 +1,11 @@
-  - name: IntelliJ IDEA
-    debug:
-      msg: "Not installing IntelliJ. Is it required?"
 
   - name: Yourkit
     debug:
       msg: "Not installing Yourkit. Is it required?"
+      
+  - name: IntelliJ IDEA
+    debug:
+      msg: "Not installing IntelliJ. Is it required?"
       
   - name: Docker
     debug:
@@ -13,4 +14,3 @@
   - name: Oracle SQL Developer
     debug:
       msg: "Not installing Oracle SQL Developer. Is it required?"
-
