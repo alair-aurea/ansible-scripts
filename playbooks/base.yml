@@ -2,7 +2,16 @@
 - name: Eng.Faster Team Base Playbook
   hosts: "{{ HOSTS }}"
   become: true
-  
+  gather_facts: False
+ 
+  pre_tasks:
+    - name: Install python for Ansible
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      register: output
+      changed_when: output.stdout != ""
+      tags: always
+    - setup: # aka gather_facts
+ 
   tasks:
     
     - name: Print selected OS
