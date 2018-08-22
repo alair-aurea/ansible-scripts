@@ -31,15 +31,15 @@ define how to setup the connection. If the connection is secured by a SSH key to
 
 For each OS name and major distribution, there are three optional files that may be created:
 
-* {os-name}\[-major-version\]-pre-tasks.yml
+* `{os-name}\[-major-version\]-pre-tasks.yml`
 
-* {os-name}\[-major-version\]-packages.yml
+* `{os-name}\[-major-version\]-packages.yml`
 
-* {os-name}\[-major-version\]-post-tasks.yml
+* `{os-name}\[-major-version\]-post-tasks.yml`
 
 Both the `os-version` and `major-version` are printed at the begining of `base.yml` play. Check if the required files exist in the `playbooks` directory.
 If they don't exist, they will be skipped as no one is individually required. The major version of the file is optional. Therefore, both 
-`Ubuntu-18.04-packages.yml` and `Ubuntu-packages.yml` are valid package list files. The former takes precedence on the later. 
+`Ubuntu-18.04-packages.yml` and `Ubuntu-packages.yml` are valid package list files for the Ubuntu distro. The former takes precedence on the later. 
 
 `*-pre-tasks.yml` provides a list of tasks that must run at the begining of the play and `*-post-tasks.yml` lists define the tasks that must run at the end. They
 may include every structure allowed in Playbook tasks. `*-packages.yml` is a list of packages available on the distro repository. The name of the packages may
