@@ -28,6 +28,6 @@ ansible_ssh_pass=password
 
 * The `ansible_ssh_pass` variable might be not necessary if connection to the target machine is secured by a SSH key.
 
-* The base playbook (**base.yml**) perform the tasks defined for all hosts under the `[vdi]` tag of the inventory file.
+* The base playbook (`base.yml`) perform the tasks defined for all hosts under the `[vdi]` tag of the inventory file.
 
 * The `.gitignore` file excludes all `*.inventory` files from version control.
