@@ -1,5 +1,5 @@
 # ansible-scripts
-
+...
 Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 
 # Quickstart
