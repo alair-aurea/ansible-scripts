@@ -5,29 +5,24 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 # Quickstart
 
 1. Install ansible (version 2.4+);
-2. Clone the repository;
-3. Create an `.inventory` file in the project's root directory to define the connection parameters (see bellow);
-4. Execute `ansible-playbook -i file.inventory base.yml`
+2. Clone this repository;
+3. Create a new `.inventory` file or add the connection parameters to `base.inventory` in the project's root directory (see bellow);
+4. Execute `ansible-playbook -i base.inventory -e HOST=vdi-alair base.yml` or use the `.inventory` file you created. Use the appropriate value
+in the `HOST` variable to select the intended host definition.
 
 ## Example of inventory file for linux target machine
 
 ```
-[vdi]
+[vdi-alair]
 vbox_host ansible_ssh_host=192.168.56.101 vbox_host_alias=vbox_host
 
-[local]
-local_host ansible_ssh_host=127.0.0.1 local_host_alias=local_host
-
-[all:vars]
-ansible_connection=ssh 
+[vdi-alair:vars]
 ansible_ssh_user=root
-ansible_ssh_pass=password
+ansible_connection=ssh 
 ```
 
-### Remarks
+There are two entries for each target machine. First, the host (target) connection definitions, like its IP address. Then, the variables, which
+define how to setup the connection. The above example uses a SSH key to connect. If password is required, include the variable `ansible_ssh_pass`
+providing the appropriate password.
 
-* The `ansible_ssh_pass` variable might be not necessary if connection to the target machine is secured by a SSH key.
 
-* The base playbook (`base.yml`) perform the tasks defined for all hosts under the `[vdi]` tag of the inventory file.
-
-* The `.gitignore` file excludes all `*.inventory` files from version control.
