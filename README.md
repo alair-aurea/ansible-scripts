@@ -30,4 +30,4 @@ ansible_ssh_pass=password
 
 * The base playbook (**base.yml**) perform the tasks defined for all hosts under the `[vdi]` tag of the inventory file.
 
-* The `.gitignore` file excludes all ** *.inventory** files from version control.
+* The `.gitignore` file excludes all `*.inventory` files from version control.
