@@ -9,7 +9,7 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 3. Create an `.inventory` file in the project's root directory to define the connection parameters (see bellow);
 4. Execute `ansible-playbook -i file.inventory base.yml`
 
-## Example of inventory file for windows target machine
+## Example of inventory file for linux target machine
 
 ```
 [vdi]
@@ -28,6 +28,6 @@ ansible_ssh_pass=password
 
 * The `ansible_ssh_pass` variable might be not necessary if connection to the target machine is secured by a SSH key.
 
-* The base playbook (**base.yml**) perform the tasks defined for all hosts under the `[vdi]` tag of the inventory file.
+* The base playbook (`base.yml`) perform the tasks defined for all hosts under the `[vdi]` tag of the inventory file.
 
-* The `.gitignore` file excludes all *.inventory files from version control.
+* The `.gitignore` file excludes all `*.inventory` files from version control.
