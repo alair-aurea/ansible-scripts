@@ -1,12 +1,13 @@
 # ansible-scripts
-...!...
+
 Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 
 # Quickstart
 
 1. Install ansible (version 2.4+);
 2. Clone this repository;
-3. Create a new `.inventory` file or add the connection parameters to `base.inventory` in the project's `inventories` directory (see bellow);
+3. Create a new `.inventory` file or add the connection parameters to `base.inventory` in the project's `inventories` directory (see [here](## Example of inventory file for linux local target machine));
+4. Create the OS specific playbooks, if they do not exist.
 4. Execute `ansible-playbook -i inventories/base.inventory -e HOSTS=local playbooks/base.yml` or use the `.inventory` file you created. Use the appropriate value
 in the `HOSTS` variable to select the intended host definition.
 
