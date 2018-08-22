@@ -9,7 +9,7 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 3. Create an `.inventory` file in the project's root directory to define the connection parameters (see bellow);
 4. Execute `ansible-playbook -i file.inventory base.yml`
 
-## Example of inventory file for windows target machine
+## Example of inventory file for linux target machine
 
 ```
 [vdi]
