@@ -38,8 +38,9 @@ For each OS name and major distribution, there are three optional files that may
 * {os-name}\[-major-version\]-post-tasks.yml
 
 Both the `os-version` and `major-version` are printed at the begining of `base.yml` play. Check if the required files exist in the `playbooks` directory.
-If they don't exist, they will be skipped as no one is individually required.
+If they don't exist, they will be skipped as no one is individually required. The major version of the file is optional. Therefore, both 
+`Ubuntu-18.04-packages.yml` and `Ubuntu-packages.yml` are valid package list files. The former takes precedence on the later. 
 
-`*-pre-tasks.yml` provides a list of tasks that must run at the begining of the play and `*-post-tasks.yml` lists define the tasks that most run at the end. They
+`*-pre-tasks.yml` provides a list of tasks that must run at the begining of the play and `*-post-tasks.yml` lists define the tasks that must run at the end. They
 may include every structure allowed in Playbook tasks. `*-packages.yml` is a list of packages available on the distro repository. The name of the packages may
 be different depending on the distro. 
