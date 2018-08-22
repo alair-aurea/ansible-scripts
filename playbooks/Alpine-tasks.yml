@@ -13,3 +13,4 @@
   - name: Oracle SQL Developer
     debug:
       msg: "Not installing Oracle SQL Developer. Is it required?"
+

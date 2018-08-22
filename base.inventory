@@ -1,9 +1,0 @@
-
-[vdi-alair]
-vbox_host ansible_ssh_host=192.168.56.101 vbox_host_alias=vbox_host
-
-[vdi-alair:vars]
-ansible_ssh_user=root
-ansible_connection=ssh 
-
-
