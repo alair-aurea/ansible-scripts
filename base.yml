@@ -1,6 +1,6 @@
 ---
 - name: Eng.Faster Team Base Playbook
-  hosts: vdi
+  hosts: "{{ HOSTS }}"
   become: true
   
   tasks:
