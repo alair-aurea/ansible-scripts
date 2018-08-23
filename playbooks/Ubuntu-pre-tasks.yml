@@ -4,6 +4,17 @@
     apt:
       name: apt-transport-https
 
+  - name: 'import Docker GPG signing key'
+    apt_key:
+      id: 0EBFCD88
+      url: https://download.docker.com/linux/ubuntu/gpg
+
   - name: 'add Docker repository'
     apt_repository:
       repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+      update_cache: true
+      
+      
+  - name: Run the equivalent of "apt-get update" as a separate step
+    apt:
+      update_cache: yes

@@ -1,9 +1,29 @@
 ---
 
-  - name: Yourkit
-    debug:
-      msg: "Not installing Yourkit. Is it required?"
+
+  - name: Get YourKit
+    get_url:
+      url: "https://www.yourkit.com/download/YourKit-JavaProfiler-{{ yourkit_version }}-{{ yourkit_minor }}.zip"
+      dest: /home/ubuntu
       
+  - name: Unzip YourKit
+    unarchive:
+      src: "/home/ubuntu/YourKit-JavaProfiler-{{ yourkit_version }}-{{ yourkit_minor }}.zip"
+      dest: "/opt"
+      remote_src: yes
+      
+  - name: Create the symlink to Yourkit integrate
+    file:
+      src: "/opt/YourKit-JavaProfiler-{{ yourkit_version }}/bin/integrate.sh"
+      path: "/usr/bin/integrate"
+      state: link
+
+  - name: Create the symlink to Yourkit profiler
+    file:
+      src: "/opt/YourKit-JavaProfiler-{{ yourkit_version }}/bin/profiler.sh"
+      path: "/usr/bin/profiler"
+      state: link
+  
   - name: IntelliJ IDEA
     debug:
       msg: "Not installing IntelliJ. Is it required?"

@@ -2,7 +2,7 @@
 - name: Eng.Faster Team Base Playbook
   hosts: "{{ HOSTS }}"
   become: true
- 
+  
   tasks:
     
     - name: Print selected OS
