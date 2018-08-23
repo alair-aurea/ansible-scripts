@@ -21,6 +21,4 @@ distro_packages:
   
 # Docker
   - docker
-  
-# Chromium
-  - chromium
+
