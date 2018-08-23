@@ -1,2 +1,9 @@
 ---
 
+  - name: Install support for HTTPS repositories
+    apt:
+      name: apt-transport-https
+
+  - name: 'add Docker repository'
+    apt_repository:
+      repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"

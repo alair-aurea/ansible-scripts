@@ -1,3 +1,4 @@
+---
 
   - name: Yourkit
     debug:
@@ -14,3 +15,7 @@
   - name: Oracle SQL Developer
     debug:
       msg: "Not installing Oracle SQL Developer. Is it required?"
+
+  - name: Redis
+    debug:
+      msg: "Not installing Redis. Is it required?"
