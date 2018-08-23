@@ -8,7 +8,7 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 2. Clone this repository;
 3. Create a new `.inventory` file or add the connection parameters to `base.inventory` in the project's `inventories` directory (see [here](#example-of-inventory-file));
 4. Create the OS specific playbooks, if they do not exist. Check how to do it [here](#os-specific-playbooks).
-4. Execute `ansible-playbook -i inventories/base.inventory -e HOSTS=local playbooks/base.yml` or use the `.inventory` file you created. Use the appropriate value
+4. Execute `ansible-playbook -i inventories/base.inventory -e HOSTS=aws-vdi playbooks/base.yml` or use the `.inventory` file you created. Use the appropriate value
 in the `HOSTS` variable to select the intended host definition.
 
 ## Example of inventory file
@@ -21,6 +21,14 @@ local_host ansible_ssh_host=127.0.0.1 local_host_alias=local_host
 ansible_ssh_user=root
 ansible_ssh_pass=password
 ansible_connection=ssh 
+
+[aws-vdi]
+aws_host ansible_ssh_host=vm-00017a42.vdi-vm.devfactory.com aws_host_alias=aws_host
+
+[aws-vdi:vars]
+ansible_ssh_user=ec2-user
+ansible_ssh_private_key_file="{{inventory_dir}}/aws-vdi.pem"
+
 ```
 
 There are two entries for each target machine. First, the host (target) connection definitions, like its IP address. Then, the variables, which
