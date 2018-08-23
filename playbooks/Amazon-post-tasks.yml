@@ -1,4 +1,44 @@
+---
 
+  - name: Get gradle
+    get_url:
+      url: "https://services.gradle.org/distributions/gradle-{{ gradle_version }}-all.zip"
+      dest: /home/ec2-user
+      
+  - name: Unzip gradle
+    unarchive:
+      src: "/home/ec2-user/gradle-{{ gradle_version }}-all.zip"
+      dest: "/opt"
+      remote_src: yes
+      
+  - name: Create the symlink to Gradle
+    file:
+      src: "/opt/gradle-{{ gradle_version }}/bin/gradle"
+      path: "/usr/bin/gradle"
+      state: link
+ 
+  - name: Get YourKit
+    get_url:
+      url: "https://www.yourkit.com/download/YourKit-JavaProfiler-{{ yourkit_version }}-{{ yourkit_minor }}.zip"
+      dest: /home/ec2-user
+      
+  - name: Unzip YourKit
+    unarchive:
+      src: "/home/ec2-user/YourKit-JavaProfiler-{{ yourkit_version }}-{{ yourkit_minor }}.zip"
+      dest: "/opt"
+      remote_src: yes
+      
+  - name: Create the symlink to Yourkit integrate
+    file:
+      src: "/opt/YourKit-JavaProfiler-{{ yourkit_version }}/bin/integrate.sh"
+      path: "/usr/bin/integrate"
+      state: link
+
+  - name: Create the symlink to Yourkit profiler
+    file:
+      src: "/opt/YourKit-JavaProfiler-{{ yourkit_version }}/bin/profiler.sh"
+      path: "/usr/bin/profiler"
+      state: link
   
   - name: Chromium
     debug:
@@ -8,17 +48,6 @@
     debug:
       msg: "Not installing Redis. Is it required?"
   
-  - name: Gradle
-    debug:
-      msg: "Not installing Gradle. Is it required?"
-
-  - name: Yourkit
-    debug:
-      msg: "Not installing Yourkit. Is it required?"
-      
-  - name: IntelliJ IDEA
-    debug:
-      msg: "Not installing IntelliJ. Is it required?"
 
   - name: Oracle SQL Developer
     debug:
