@@ -1,0 +1,25 @@
+
+  
+  - name: Chromium
+    debug:
+      msg: "Not installing Chromium. Is it required?"
+  
+  - name: Redis
+    debug:
+      msg: "Not installing Redis. Is it required?"
+  
+  - name: Gradle
+    debug:
+      msg: "Not installing Gradle. Is it required?"
+
+  - name: Yourkit
+    debug:
+      msg: "Not installing Yourkit. Is it required?"
+      
+  - name: IntelliJ IDEA
+    debug:
+      msg: "Not installing IntelliJ. Is it required?"
+
+  - name: Oracle SQL Developer
+    debug:
+      msg: "Not installing Oracle SQL Developer. Is it required?"
