@@ -87,7 +87,7 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-After this step ansible can connect to windows machine with not secure `basic` configuration. Example of inventory file can be seen below.
+continue and take note of the Thumbprint as it is going to be used later for more secure way to communicate. After this step ansible can connect to windows machine with not secure `basic` configuration. Example of inventory file can be seen below.
 
 ### Example inventory file for `basic` winrm connection
 
@@ -118,7 +118,7 @@ ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
 
 ```
 
-If more secure connection is preferred you must use example inventory file for `ntlm`connection, continue and take note of the Thumbprint as it is going to be used later. To get information about the winrm listener and print the Thumbprint again, just run:
+If more secure connection is preferred you must use example inventory file for `ntlm`connection, and continue executing below powershell scripts. To get information about the winrm listener and print the Thumbprint again, just run:
 
 ```
 winrm enumerate winrm/config/Listener
