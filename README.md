@@ -118,7 +118,7 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you can use example inventory file for `ntlm`connection. Example of inventory files can be seen below.
+After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you can use example inventory file for `ntlm` connection. Example of inventory files can be seen below.
 
 ### Example inventory file for `basic` winrm connection
 
