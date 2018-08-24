@@ -88,7 +88,7 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-continue and take note of the Thumbprint as it is going to be used later for more secure way to communicate. After this step ansible can connect to windows machine with not secure `basic` configuration. Example of inventory file can be seen below.
+After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you must can use example inventory file for `ntlm`connection. Example of inventory files can be seen below.
 
 ### Example inventory file for `basic` winrm connection
 
@@ -118,42 +118,8 @@ ansible_winrm_server_cert_validation=ignore
 ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
 
 ```
-
-If more secure connection is preferred you must use example inventory file for `ntlm`connection, and continue executing below powershell scripts. To get information about the winrm listener and print the Thumbprint again, just run:
+To get information about the winrm listeners, just run:
 
 ```
 winrm enumerate winrm/config/Listener
-```
-
-After that, define the following variable:
-
-```
-$selector_set = @{
-    Address = "*"
-    Transport = "HTTPS"
-}
-```
-
-Then, define the Thumbprint. Be careful to use the Thumbprint you took note before.
-
-```
-$value_set = @{
-    CertificateThumbprint = "E6CDAA82EEAF2ECE8546E05DB7F3E01AA47D76CE"
-}
-```
-
-Execute the following command to perform the final step.
-
-```
-New-WSManInstance -ResourceURI "winrm/config/Listener" -SelectorSet $selector_set -ValueSet $value_set
-```
-
-You can get information of the `winrm` service by running the following commands:
-
-```
-(Get-Service -Name winrm).Status
-
-winrm get winrm/config/Service
-
-winrm get winrm/config/Winrs
 ```
