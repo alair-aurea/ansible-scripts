@@ -87,7 +87,38 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-Take note of the Thumbprint as it is going to be used later. To get information about the winrm listener and print the Thumbprint again, just run:
+After this step ansible can connect to windows machine with not secure `basic` configuration. Example of inventory file can be seen below.
+
+### Example inventory file for `basic` winrm connection
+
+```
+[windows-vdi]
+windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+
+[windows-vdi:vars]
+ansible_connection=winrm
+ansible_winrm_transport=basic
+ansible_ssh_user=Administrator
+ansible_ssh_pass=MNi6d8f.CV*Y=76=SOOxiBe6YHq)bubm
+ansible_winrm_server_cert_validation=ignore
+
+```
+### Example inventory file for `ntlm` winrm connection
+
+```
+[windows-vdi]
+windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+
+[windows-vdi:vars]
+ansible_connection=winrm 
+ansible_winrm_transport=ntlm
+ansible_ssh_user=administrator
+ansible_winrm_server_cert_validation=ignore
+ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
+
+```
+
+If more secure connection is preferred you must continue and take note of the Thumbprint as it is going to be used later. To get information about the winrm listener and print the Thumbprint again, just run:
 
 ```
 winrm enumerate winrm/config/Listener
