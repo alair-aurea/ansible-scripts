@@ -22,12 +22,37 @@ ansible_ssh_user=root
 ansible_ssh_pass=password
 ansible_connection=ssh 
 
-[aws-vdi]
-aws_host ansible_ssh_host=vm-00017a42.vdi-vm.devfactory.com aws_host_alias=aws_host
+[amazon-vdi]
+amazon_host ansible_ssh_host=vm-00017a42.vdi-vm.devfactory.com amazon_host_alias=amazon_host
 
-[aws-vdi:vars]
+[amazon-vdi:vars]
+ansible_connection=ssh 
 ansible_ssh_user=ec2-user
-ansible_ssh_private_key_file="{{inventory_dir}}/aws-vdi.pem"
+ansible_ssh_private_key_file="{{inventory_dir}}/amazon-vdi.pem"
+gradle_version=4.10-rc-2
+
+[ubuntu-vdi]
+ubuntu_vdi ansible_ssh_host=vm-00017a95.vdi-vm.devfactory.com ubuntu_vdi_alias=ubuntu_vdi
+
+[ubuntu-vdi:vars]
+ansible_connection=ssh 
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file="{{inventory_dir}}/ubuntu-vdi.pem"
+ansible_python_interpreter=/usr/bin/python3
+
+[windows-vdi]
+windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+
+[windows-vdi:vars]
+ansible_connection=winrm 
+ansible_winrm_transport=ntlm
+ansible_ssh_user=administrator
+ansible_winrm_server_cert_validation=ignore
+ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
+
+[all:vars]
+yourkit_version=2018.04
+yourkit_minor=b81
 
 ```
 
