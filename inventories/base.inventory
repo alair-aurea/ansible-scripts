@@ -8,7 +8,7 @@ ansible_ssh_pass=password
 ansible_connection=ssh 
 
 [amazon-vdi]
-amazon_host ansible_ssh_host=vm-00017a42.vdi-vm.devfactory.com amazon_host_alias=amazon_host
+10.66.97.49
 
 [amazon-vdi:vars]
 ansible_connection=ssh 
@@ -17,7 +17,7 @@ ansible_ssh_private_key_file="{{inventory_dir}}/amazon-vdi.pem"
 gradle_version=4.10-rc-2
 
 [ubuntu-vdi]
-ubuntu_vdi ansible_ssh_host=vm-00017a95.vdi-vm.devfactory.com ubuntu_vdi_alias=ubuntu_vdi
+10.66.100.89
 
 [ubuntu-vdi:vars]
 ansible_connection=ssh 
@@ -27,7 +27,7 @@ ansible_ssh_private_key_file="{{inventory_dir}}/ubuntu-vdi.pem"
 ansible_python_interpreter=/usr/bin/python3
 
 [windows-vdi]
-windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+10.66.99.240
 
 [windows-vdi:vars]
 ansible_connection=winrm 
