@@ -67,7 +67,14 @@ be different depending on the distro.
 In order to a monitor computer to use Ansible for controlling a Windows host, it is necessary to follow some procedures. Mostly of the Windows related
 are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
 
-## Microsoft Windows Server 2016 Datacenter
+## Microsoft Windows Prerequisites for Ansible
+1) PowerShell 3.0 or newer
+2) Al least .NET 4.0
+
+    * You can find detailed original post in below link.`https://docs.ansible.com/ansible/2.5/user_guide/windows_setup.html`
+    * To check your powershell version; `$PSVersionTAble.PSVersion`
+
+3) WinRM listener should be created and activated.
 
 Connect to the VDI Instance and open a PowerShell. Then, execute the following commands:
 
