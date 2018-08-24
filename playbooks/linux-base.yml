@@ -1,0 +1,38 @@
+---
+
+  # Run distro specific pre tasks to more complex provisioning
+  - name: Execute OS specific pre tasks
+    include_tasks: "{{ item }}"
+    with_first_found:
+      - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-pre-tasks.yml"
+        - "{{ ansible_distribution }}-pre-tasks.yml"
+        skip: truez
+    
+  
+  # Include the package list file for the target distribution
+  - name: Include OS packages to be installed
+    include_vars: "{{ item }}"
+    with_first_found:
+      - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-packages.yml"
+        - "{{ ansible_distribution }}-packages.yml"
+        skip: true
+    
+    
+  # Install the packages available on the target distribution
+  - name: Install OS available packages
+    package:
+      name: "{{ distro_packages }}"
+      state: latest
+    when: distro_packages is defined
+  
+  # Run OS specific tasks to more complex provisioning
+  - name: Execute OS specific post tasks
+    include_tasks: "{{ item }}"
+    with_first_found:
+      - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-post-tasks.yml"
+        - "{{ ansible_distribution }}-post-tasks.yml"
+        skip: true
+  

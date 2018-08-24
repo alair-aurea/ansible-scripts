@@ -30,3 +30,6 @@ distro_packages:
   
 # Docker
   - docker-ce
+  
+# TCL (required by Redis)
+  - tcl
