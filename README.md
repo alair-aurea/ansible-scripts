@@ -10,7 +10,7 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 4. Create the OS specific playbooks, if they do not exist. Check how to do it [here](#os-specific-playbooks).
 5. If target machine is Linux. Copy the `.pem`file to inventories folder with the linux specific naming (ex: ubuntu-vdi.pem, amazon-vdi.pem) and change its permissions using below script.
 
-`chmod go-rw ubuntu-vdi.pem`
+   `chmod go-rw ubuntu-vdi.pem`
 
 6. Execute `ansible-playbook -i inventories/base.inventory -e HOSTS=aws-vdi playbooks/base.yml` or use the `.inventory` file you created. Use the appropriate value
 in the `HOSTS` variable to select the intended host definition.
