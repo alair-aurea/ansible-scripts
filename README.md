@@ -52,3 +52,58 @@ If they don't exist, they will be skipped as no one is individually required. Th
 `*-pre-tasks.yml` provides a list of tasks that must run at the begining of the play and `*-post-tasks.yml` lists define the tasks that must run at the end. They
 may include every structure allowed in Playbook tasks. `*-packages.yml` is a list of packages available on the distro repository. The name of the packages may
 be different depending on the distro. 
+
+
+# Windows Setup
+
+In order to a monitor computer to use Ansible for controlling a Windows host, it is necessary to follow some procedures. Mostly of the Windows related
+are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
+
+## Microsoft Windows Server 2016 Datacenter
+
+Connect to the VDI Instance and open a PowerShell. Then, execute the following commands:
+
+```
+$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
+$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
+powershell.exe -ExecutionPolicy ByPass -File $file
+```
+
+Take note of the Thumbprint as it is going to be used later. To get information about the winrm listener and print the Thumbprint again, just run:
+
+```
+winrm enumerate winrm/config/Listener
+```
+
+After that, define the following variable:
+
+```
+$selector_set = @{
+    Address = "*"
+    Transport = "HTTPS"
+}
+```
+
+Then, define the Thumbprint. Be careful to use the Thumbprint you took note before.
+
+```
+$value_set = @{
+    CertificateThumbprint = "E6CDAA82EEAF2ECE8546E05DB7F3E01AA47D76CE"
+}
+```
+
+Execute the following command to perform the final step.
+
+```
+New-WSManInstance -ResourceURI "winrm/config/Listener" -SelectorSet $selector_set -ValueSet $value_set
+```
+
+You can get information of the `winrm` service by running the following commands:
+
+```
+(Get-Service -Name winrm).Status
+
+winrm get winrm/config/Service
+
+winrm get winrm/config/Winrs
+```
