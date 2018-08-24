@@ -118,7 +118,7 @@ ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
 
 ```
 
-If more secure connection is preferred you must continue and take note of the Thumbprint as it is going to be used later. To get information about the winrm listener and print the Thumbprint again, just run:
+If more secure connection is preferred you must use example inventory file for `ntlm`connection, continue and take note of the Thumbprint as it is going to be used later. To get information about the winrm listener and print the Thumbprint again, just run:
 
 ```
 winrm enumerate winrm/config/Listener
