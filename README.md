@@ -14,23 +14,6 @@ in the `HOSTS` variable to select the intended host definition.
 ## Example of inventory file
 
 ```
-[local]
-local_host ansible_ssh_host=127.0.0.1 local_host_alias=local_host
-
-[local:vars]
-ansible_ssh_user=root
-ansible_ssh_pass=password
-ansible_connection=ssh 
-
-[amazon-vdi]
-amazon_host ansible_ssh_host=vm-00017a42.vdi-vm.devfactory.com amazon_host_alias=amazon_host
-
-[amazon-vdi:vars]
-ansible_connection=ssh 
-ansible_ssh_user=ec2-user
-ansible_ssh_private_key_file="{{inventory_dir}}/amazon-vdi.pem"
-gradle_version=4.10-rc-2
-
 [ubuntu-vdi]
 ubuntu_vdi ansible_ssh_host=vm-00017a95.vdi-vm.devfactory.com ubuntu_vdi_alias=ubuntu_vdi
 
