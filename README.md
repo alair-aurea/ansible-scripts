@@ -98,9 +98,9 @@ windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias
 [windows-vdi:vars]
 ansible_connection=winrm
 ansible_winrm_transport=basic
-ansible_ssh_user=Administrator
-ansible_ssh_pass=MNi6d8f.CV*Y=76=SOOxiBe6YHq)bubm
+ansible_ssh_user=administrator
 ansible_winrm_server_cert_validation=ignore
+ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
 
 ```
 ### Example inventory file for `ntlm` winrm connection
