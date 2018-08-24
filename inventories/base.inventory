@@ -7,4 +7,35 @@ ansible_ssh_user=root
 ansible_ssh_pass=password
 ansible_connection=ssh 
 
+[amazon-vdi]
+10.66.97.49
 
+[amazon-vdi:vars]
+ansible_connection=ssh 
+ansible_ssh_user=ec2-user
+ansible_ssh_private_key_file="{{inventory_dir}}/amazon-vdi.pem"
+gradle_version=4.10-rc-2
+
+[ubuntu-vdi]
+10.66.100.89
+
+[ubuntu-vdi:vars]
+ansible_connection=ssh 
+ansible_ssh_user=ubuntu
+ansible_ssh_pass=
+ansible_ssh_private_key_file="{{inventory_dir}}/ubuntu-vdi.pem"
+ansible_python_interpreter=/usr/bin/python3
+
+[windows-vdi]
+10.66.99.240
+
+[windows-vdi:vars]
+ansible_connection=winrm 
+ansible_winrm_transport=ntlm
+ansible_ssh_user=administrator
+ansible_winrm_server_cert_validation=ignore
+ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
+
+[all:vars]
+yourkit_version=2018.04
+yourkit_minor=b81

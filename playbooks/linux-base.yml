@@ -1,0 +1,47 @@
+---
+
+  # Every distro has its specific configuration files. 
+  # First, check if there is a file with the distro major version.
+  # If not, fall back to the basic ditro task file.
+  
+  # Run distro specific pre tasks to more complex provisioning
+  # Example: Ubuntu-16-pre-tasks.yml and Ubuntu-pre-tasks.yml
+  - name: Execute OS specific pre tasks
+    include_tasks: "{{ item }}"
+    with_first_found:
+      - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-pre-tasks.yml"
+        - "{{ ansible_distribution }}-pre-tasks.yml"
+        skip: true
+    
+  
+  # Include the package list file for the target distribution
+  # Examples: Ubuntu-16-packages.yml and Ubuntu-packages.yml
+  - name: Include OS packages to be installed
+    include_vars: "{{ item }}"
+    with_first_found:
+      - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-packages.yml"
+        - "{{ ansible_distribution }}-packages.yml"
+        skip: true
+    
+  # Install the packages available on the target distribution
+  - name: Install OS available packages
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+        "{{ distro_packages }}"
+    when: distro_packages is defined
+  
+  
+  
+  # Run OS specific tasks to more complex provisioning
+  # Example: Ubuntu-16-post-tasks.yml and Ubuntu-post-tasks.yml
+  - name: Execute OS specific post tasks
+    include_tasks: "{{ item }}"
+    with_first_found:
+      - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-post-tasks.yml"
+        - "{{ ansible_distribution }}-post-tasks.yml"
+        skip: true
