@@ -19,7 +19,7 @@ in the `HOSTS` variable to select the intended host definition.
 
 ```
 [ubuntu-vdi]
-ubuntu_vdi ansible_ssh_host=vm-00017a95.vdi-vm.devfactory.com ubuntu_vdi_alias=ubuntu_vdi
+10.66.97.200
 
 [ubuntu-vdi:vars]
 ansible_connection=ssh 
@@ -28,7 +28,7 @@ ansible_ssh_private_key_file="{{inventory_dir}}/ubuntu-vdi.pem"
 ansible_python_interpreter=/usr/bin/python3
 
 [windows-vdi]
-windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+10.66.97.49
 
 [windows-vdi:vars]
 ansible_connection=winrm 
@@ -124,7 +124,7 @@ After this step ansible can connect to windows machine with not secure `basic` c
 
 ```
 [windows-vdi]
-windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+10.66.97.49
 
 [windows-vdi:vars]
 ansible_connection=winrm
@@ -138,7 +138,7 @@ ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
 
 ```
 [windows-vdi]
-windows_vdi ansible_ssh_host=vm-00017a9f.vdi-vm.devfactory.com windows_vdi_alias=windows_vdi
+10.66.97.49
 
 [windows-vdi:vars]
 ansible_connection=winrm 
