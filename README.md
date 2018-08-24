@@ -65,6 +65,32 @@ If they don't exist, they will be skipped as no one is individually required. Th
 may include every structure allowed in Playbook tasks. `*-packages.yml` is a list of packages available on the distro repository. The name of the packages may
 be different depending on the distro. 
 
+# Current Directory Structure
+
+Currently the project structure has three directories: `files`, `inventory` and `playbooks`. The `files` directory is intended to store the files required to install the tools. It aims at reducing the dependency of external links (see [this](https://github.com/alair-aurea/ansible-scripts/issues/2) issue). The `playbooks` directory holds the playbooks. There are some general playbooks (like `base.yml`) and OS specifc playbooks (like `Ubuntu-packages.yml`). These files define the steps to be reproduced on the host machine. The `inventory` directory holds the inventory files that define the connection information. It also stores some project specific vars. Ideally, the files in these directory are the only that have to be updated when you connect to a new instance, as long as the vdi image and the required tools do not change. The tree bellow shows an example of directory structure.
+
+```
+.
+├── files
+│   └── YourKit-linux
+├── inventories
+│   ├── amazon-vdi.pem
+│   ├── base.inventory
+│   └── ubuntu-vdi.pem
+├── playbooks
+│   ├── Amazon-packages.yml
+│   ├── Amazon-post-tasks.yml
+│   ├── Amazon-pre-tasks.yml
+│   ├── base.yml
+│   ├── linux-base.yml
+│   ├── Ubuntu-packages.yml
+│   ├── Ubuntu-post-tasks.yml
+│   ├── Ubuntu-pre-tasks.yml
+│   └── windows-base.yml
+└── README.md
+```
+
+This structure is not following yet the [Ansible Best Practices Guide](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html). This issue will be addressed in the future.
 
 # Windows Setup
 
