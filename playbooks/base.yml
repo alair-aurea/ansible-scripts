@@ -1,47 +1,34 @@
 ---
 - name: Eng.Faster Team Base Playbook
   hosts: "{{ HOSTS }}"
-  become: true
- 
+  # If this is windows, cannot escalate privileges
+  become: "{{ 'no' if ansible_connection == 'winrm' else 'yes' }}" 
+  
   tasks:
-    
+    # Print the major and minor version of the OS for information purposes
     - name: Print selected OS
       debug: msg="Selected OS -> {{ ansible_distribution }}; Major version -> {{ ansible_distribution_major_version}}"
         
     
-    # Run distro specific pre tasks to more complex provisioning
-    - name: Execute OS specific pre tasks
-      include_tasks: "{{ item }}"
+    # Is this windows? If so, executes the windows-base tasks
+    - name: Include base file for Windows OSs
+      include_tasks: "{{ tasks_windows }}"
       with_first_found:
         - files:
-          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-pre-tasks.yml"
-          - "{{ ansible_distribution }}-pre-tasks.yml"
+          - "windows-base.yml"
           skip: true
+      loop_control:
+        loop_var: tasks_windows
+      when: ansible_connection == "winrm"
       
-    
-    # Include the package list file for the target distribution
-    - name: Include OS packages to be installed
-      include_vars: "{{ item }}"
+    # Is this not windows? If so, executes the linux-base tasks
+    - name: Include base file for not Windows OSs
+      include_tasks: "{{ tasks_linux }}"
       with_first_found:
         - files:
-          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-packages.yml"
-          - "{{ ansible_distribution }}-packages.yml"
+          - "linux-base.yml"
           skip: true
-      
-      
-    # Install the packages available on the target distribution
-    - name: Install OS available packages
-      package:
-        name: "{{ distro_packages }}"
-        state: latest
-      when: distro_packages is defined
-    
-    # Run OS specific tasks to more complex provisioning
-    - name: Execute OS specific tasks
-      include_tasks: "{{ item }}"
-      with_first_found:
-        - files:
-          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}-post-tasks.yml"
-          - "{{ ansible_distribution }}-post-tasks.yml"
-          skip: true
+      loop_control:
+        loop_var: tasks_linux
+      when: ansible_connection == "ssh"
     
