@@ -73,7 +73,7 @@ are marked as "not stable interface" on Ansible, which means that Windows host m
 
 ## Microsoft Windows Prerequisites for Ansible
 1) PowerShell 3.0 or newer
-2) Al least .NET 4.0
+2) At least .NET 4.0
 
     * You can find detailed original post in below link.
       `https://docs.ansible.com/ansible/2.5/user_guide/windows_setup.html`
