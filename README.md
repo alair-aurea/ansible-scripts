@@ -6,7 +6,7 @@ Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 
 1. Install ansible (version 2.4+);
 2. Clone this repository;
-3. Create a new `.inventory` file or add/update the connection parameters in `base.inventory` in the project's `inventories` directory (see [here](#example-of-inventory-file));
+3. Create a new `.inventory` file or add/update `base.inventory` connection parameters. `base.inventory` is in the project's `inventories` directory (see [here](#example-of-inventory-file));
 4. Create the OS specific playbooks, if they do not exist. Check how to do it [here](#os-specific-playbooks).
 5. If target machine is Linux. Copy the `.pem`file to inventories folder with the linux specific naming (ex: ubuntu-vdi.pem, amazon-vdi.pem) and change its permissions using below script.
 
