@@ -2,6 +2,7 @@ import yaml
 
 class PlaybookCreator():
 
+
     def create(self, host_config, playbookDir):
 
         mainPlay = {}
@@ -15,6 +16,14 @@ class PlaybookCreator():
             "debug": 'msg="Selected OS -> {{ ansible_distribution }}; Major version -> {{ ansible_distribution_major_version}}"'
         }
         taskList.append(taskInfo)
+        
+        
+        if ('pre-tasks' in host_config):
+            preTasks = {
+                "name": "Execute preparation tasks",
+                "include_tasks": "../" + host_config['pre-tasks']
+            }
+            taskList.append(preTasks)
         
         taskPackages = {
             "name": "Install OS pre-selected packages",
@@ -42,6 +51,15 @@ class PlaybookCreator():
         if ('additional_packages' in host_config):
             taskAdditional["with_items"] = host_config['additional_packages']
             taskList.append(taskAdditional)
+        
+        
+        if ('post-tasks' in host_config):
+            postTasks = {
+                "name": "Execute post-installation tasks",
+                "include_tasks": "../" + host_config['post-tasks']
+            }
+            taskList.append(postTasks)
+        
         
         mainPlay['tasks'] = taskList
         
