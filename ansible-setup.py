@@ -1,44 +1,50 @@
 #!/usr/bin/python
 from __future__ import unicode_literals
 from prompt_toolkit import prompt
-from prompt_toolkit.validation import Validator, ValidationError
 from prompt_toolkit.completion import WordCompleter
-from prompt_toolkit import prompt
-from inventoryParser import InventoryParser
-import re
+from osscriptselector import OsScriptSelector
+import inquirer
 
-class YesNoValidator( Validator ):
-    def validate( self, document ):
-        answer = document.text.lower()
-
-        if answer and not answer in ["y", "n"]:
-            raise ValidationError( message='Please answer Yes or No!' )
-            
-class OSValidator( Validator ):
-    def validate( self, document ):
-        os = document.text.lower()
-        if os and not os in ["linux", "windows"]:
-            raise ValidationError( message='Please chose Linux or Windows!' )
-
-
-class HostIdValidator( Validator ):
-    def __init__( self, inventoryDir ):
-        self.inventory = InventoryParser( inventoryDir )
-        
-    def validate( self, document ):
-        hostId = document.text.lower()
-        
-        if ( not re.match("^[a-zA-Z][a-zA-Z0-9-]*$", hostId) or len(hostId) > 20 ):
-            raise ValidationError(message='Must have from 1 to 20 characters of [a-z,A-Z,0-9,-] starting with [a-z,A-Z].')
-        
-        filename = self.inventory.getHostFile( hostId )
-        if ( not filename is None ) :
-            raise ValidationError(message="Host Identification already defined in '" + filename + "'.")
-
-
-
+import validators
+import sys
 
 if __name__ == "__main__":
 
-    host_identification = prompt('Host Identification: ', validator=HostIdValidator("inventories"))
+    forceOverwrite = "--overwrite" in sys.argv
+
+    host_config = {}
+
+    print
+
+    host_config['id'] = prompt('Host Identification: ', validator=validators.HostIdValidator("inventories", forceOverwrite))
+  
+    host_config['address'] = prompt('Host address: ', validator=validators.HostAddressValidator())
     
+    print
+    
+    dev = ['Java', '.NET', 'C++']
+    os = ['linux', 'windows']
+    
+    questions = [
+        inquirer.List('dev',
+            message="Development Environment",
+            choices=dev,
+        ),
+        
+        inquirer.List('os',
+            message="Base Operating System",
+            choices=os,
+        ),
+    ]
+    
+    answers = inquirer.prompt(questions)
+
+    host_config['dev'] = answers['dev']
+    
+    host_type = answers['os']
+    
+    selector = OsScriptSelector()
+    
+    selectedOSScript = getattr(selector, host_type)
+    
+    selectedOSScript( host_config )

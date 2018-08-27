@@ -10,7 +10,7 @@ class InventoryParser():
         filenames = self.getInventoryFilenames()
         self.configs = {}
         for filename in filenames:
-            config = configparser.ConfigParser()
+            config = configparser.RawConfigParser()
             config.read(filename)
             self.configs[filename] = config
             

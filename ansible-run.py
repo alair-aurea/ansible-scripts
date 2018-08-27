@@ -4,7 +4,6 @@ from subprocess import call
 from os import walk
 
 import sys
-import configparser
 from inventoryParser import InventoryParser
 
 def printUsage():
@@ -28,4 +27,4 @@ if __name__ == "__main__":
         if (hostfile is None):
             printHowToSetup(host)
         else:
-            call(["ansible-playbook", "-i", hostfile, "-e HOSTS=" + host, "playbooks/base.yml"])
+            call(["ansible-playbook", "-i", hostfile, "-e HOSTS=" + host, "playbooks/"+ host +".yml"])
