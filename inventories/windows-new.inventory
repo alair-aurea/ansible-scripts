@@ -1,0 +1,10 @@
+[windows-new]
+windows_new_host ansible_host=10.66.101.144
+
+[windows-new:vars]
+ansible_user=administrator
+ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
+ansible_connection=winrm
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
+
