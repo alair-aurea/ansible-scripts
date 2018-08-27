@@ -41,10 +41,10 @@ if __name__ == "__main__":
 
     host_config['dev'] = answers['dev']
     
-    host_type = answers['os']
+    host_config['os'] = answers['os']
     
     selector = OsScriptSelector()
     
-    selectedOSScript = getattr(selector, host_type)
+    selectedOSScript = getattr(selector, host_config['os'])
     
     selectedOSScript( host_config )
