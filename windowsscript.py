@@ -18,6 +18,8 @@ class WindowsScript():
         
         print
         
+        host_config['distro'] = 'windows' # windows is considered just one distro
+        
         packageHandler = PackageHandler("configs/windows.conf", "chocolatey")
         
         host_config[ 'packages' ] = packageHandler.selectPackages( host_config )

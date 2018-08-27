@@ -17,7 +17,7 @@ class PackageHandler():
         packages = []
         default = []
         
-        config = dict(base_config.items(self.repository + ':' + host_config['dev']))
+        config = dict(base_config.items( host_config['distro'] + ':' + host_config['dev'] + ":" + self.repository) )
         
         for package in config.keys(): 
             packages.append(package)
