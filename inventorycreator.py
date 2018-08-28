@@ -1,4 +1,5 @@
 import configparser
+import os
 
 class InventoryCreator():
     def create(self, host_config, inventoryDir):
@@ -31,6 +32,9 @@ class InventoryCreator():
         
         if (not inventoryDir[-1]  == '/'):
             inventoryDir = inventoryDir + '/'
+        
+        if not os.path.exists(inventoryDir):
+            os.makedirs(inventoryDir)
         
         f = open(inventoryDir + host_config['id'] + '.inventory', 'w')
         inventory.write(f, space_around_delimiters=False)

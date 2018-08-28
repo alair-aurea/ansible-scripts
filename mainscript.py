@@ -9,6 +9,9 @@ import validators
 import inquirer
 import yaml
 
+
+
+
 class MainScript():
 
     def __init__( self, host_config  ):
@@ -31,6 +34,7 @@ class MainScript():
         ]
         
         return inquirer.prompt(questions)['distro']
+        
 
     def execute( self ):
         
@@ -40,35 +44,55 @@ class MainScript():
         
         print
         
-        usesKey = prompt('Connect using Key File? (y/n): ', validator=validators.YesNoValidator())
+        usesKey = prompt('Connect using Key File? (y/N): ', validator=validators.YesNoValidator())
+        
+        if ( usesKey == 'y' ):
+            fileSelector = FileSelector("keys/", (".pem", ".ppk"), "Select the key file")
+            keyFile = fileSelector.select()
+            
+            if (keyFile):
+                host_config['key-file'] = keyFile
+                host_config['security'] = 'key'
+            else:
+                print "[Error] No available keys. Place the key files in the 'keys' directory and run again. Falling back to password."
+                usesKey = 'n'
+                
         
         if ( usesKey == 'n' ):
             host_config['security'] = 'pass'
             host_config['pass'] = prompt('password: ', is_password=True)
-        else:
-            fileSelector = FileSelector("keys/", (".pem", ".ppk"), "Select the key file")
-            host_config['security'] = 'key'
-            host_config['key-file'] = fileSelector.select()
-        
+
         print
         
-        host_config['distro'] = self.selectDistro()
         
-        wantsPre = prompt('Execute preparation tasks? (y/n): ', validator=validators.YesNoValidator())
+        try:
+            host_config['distro'] = self.selectDistro()
+        except:
+            print "[Error] Cannot load configs. Do the config files exist? Correct the error and run again."
+            return
+            
+        wantsPre = prompt('Execute preparation tasks? (y/N): ', validator=validators.YesNoValidator())
         
         if ( wantsPre == 'y' ):
             fileSelector = FileSelector("prepared-tasks/", (".yml", ".yaml"), "Select the preparation tasks file")
             taskFile = fileSelector.select()
-            if (not taskFile is None):
+            if ( taskFile ):
                 host_config['pre-tasks'] = "prepared-tasks/" + taskFile
+            else: 
+                print
+                print "[Error] No prepared tasks available. Place prepared playbooks in 'prepared-tasks' directory and run again."
+                print
         
         configFile = "configs/" + host_config['os'] + ".conf"
         
         packageHandler = PackageHandler(configFile)
         
-        host_config[ 'packages' ] = packageHandler.selectPackages( host_config )
-               
-        host_config[ 'additional_packages' ] = packageHandler.selectAdditionalPackages()
+        try:
+            host_config[ 'packages' ] = packageHandler.selectPackages( host_config )
+            host_config[ 'additional_packages' ] = packageHandler.selectAdditionalPackages()
+        except:
+            print "[Error] Cannot load configs. Do the config files exist? Correct the error and run again."
+            return
         
         inventory_creator = InventoryCreator()
         inventory_creator.create(host_config, "./inventories")
@@ -80,8 +104,12 @@ class MainScript():
         if ( wantsPost == 'y' ):
             fileSelector = FileSelector("prepared-tasks/", (".yml", ".yaml"), "Select the post-installation tasks file")
             taskFile = fileSelector.select()
-            if (not taskFile is None):
+            if (taskFile):
                 host_config['post-tasks'] = "prepared-tasks/" + taskFile
+            else: 
+                print
+                print "[Error] No prepared tasks available. Place prepared playbooks in 'prepared-tasks' directory and run again."
+                print
         
         playbook_creator = PlaybookCreator()
         playbook_creator.create(host_config, "./playbooks")
@@ -91,4 +119,4 @@ class MainScript():
         print
         
         
-        
+      

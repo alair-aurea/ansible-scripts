@@ -10,17 +10,23 @@ class FileSelector():
         self.extensions = extensions
             
     def getFilenames( self ):
+        filenames = []
         for ( dirpath, dirnames, filenames ) in walk(self.filesDir):
             filenames = [ fi for fi in filenames if fi.endswith( self.extensions ) ]
-            return filenames
+            break
+        return filenames
 
     def select( self ):
-      
-        questions = [
-            inquirer.List('files',
-                  message=self.message,
-                  choices=self.getFilenames(),
-              ),
-        ]
+        filenames = self.getFilenames()
         
-        return inquirer.prompt(questions)['files']
+        if filenames:
+            questions = [
+                inquirer.List('files',
+                      message=self.message,
+                      choices=self.getFilenames(),
+                  ),
+            ]
+            return inquirer.prompt(questions)['files']
+            
+        else:
+            return None
