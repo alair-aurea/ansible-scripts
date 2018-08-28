@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from prompt_toolkit import prompt
 from os import walk
 import inquirer
+import constants
 
 class FileSelector():
     def __init__( self, filesDir, extensions, message  ):
@@ -18,15 +19,26 @@ class FileSelector():
 
     def select( self ):
         filenames = self.getFilenames()
-        
+      
         if filenames:
-            questions = [
-                inquirer.List('files',
-                      message=self.message,
-                      choices=self.getFilenames(),
-                  ),
-            ]
-            return inquirer.prompt(questions)['files']
+            while(True):
+                filename = inquirer.prompt([
+                        inquirer.List('files',
+                            message=self.message,
+                            choices=self.getFilenames(),
+                        ),
+                    ])['files']
+              
+                correct = inquirer.prompt([
+                        inquirer.Confirm('confirmation',
+                            message=constants.CONFIRM_FILE_SELECTION_TEXT + " '" + filename + "'",
+                            default=True,
+                        ),
+                    ])['confirmation']
+                if ( correct ):
+                    return filename
+                else:
+                    print
             
         else:
             return None
