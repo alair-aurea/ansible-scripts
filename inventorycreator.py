@@ -30,6 +30,22 @@ class InventoryCreator():
             inventory[host_config['id'] + ":vars"]["ansible_connection"] = 'ssh'
         
         
+        # copy additional variables from config
+        if (host_config['os'] == 'windows'):
+            configFile = 'configs/windows.conf'
+        else:
+            configFile = 'configs/linux.conf'
+      
+        config = configparser.RawConfigParser(allow_no_value=True)
+        config.read(configFile)
+        
+        section = host_config['distro'] + ':ansible:variables'
+        
+        if ( config[section] ):
+          for ( key, val ) in config[section].items():
+              inventory[host_config['id'] + ":vars"][key] = val
+        
+        
         if (not inventoryDir[-1]  == '/'):
             inventoryDir = inventoryDir + '/'
         
