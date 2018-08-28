@@ -5,11 +5,11 @@
   - name: Get YourKit
     get_url:
       url: "https://www.yourkit.com/download/YourKit-JavaProfiler-2018.04-b81.zip"
-      dest: /home/ubuntu
+      dest: /tmp
       
   - name: Unzip YourKit
     unarchive:
-      src: "/home/ubuntu/YourKit-JavaProfiler-2018.04-b81.zip"
+      src: "/tmp/YourKit-JavaProfiler-2018.04-b81.zip"
       dest: "/opt"
       remote_src: yes
       
@@ -30,31 +30,24 @@
   - name: Get Redis
     get_url:
       url: "http://download.redis.io/redis-stable.tar.gz"
-      dest: /home/ubuntu
+      dest: /tmp
       
   - name: Unarchive Redis
     unarchive:
-      src: "/home/ubuntu/redis-stable.tar.gz"
-      dest: "/home/ubuntu"
+      src: "/tmp/redis-stable.tar.gz"
+      dest: "/tmp"
       remote_src: yes
   
   # Build the default target
   - name: Build Redis
     make:
-      chdir: /home/ubuntu/redis-stable
-
-  # Run test target
-  - name: Test Redis Installation
-    make: 
-      chdir: /home/ubuntu/redis-stable
-      target: test
+      chdir: /tmp/redis-stable
 
   # Run install target as root
   - name: Install Redis (Make Install)
     make:
-      chdir: /home/ubuntu/redis-stable
+      chdir: /tmp/redis-stable
       target: install
-
   
   # Other software that must be installed
 
