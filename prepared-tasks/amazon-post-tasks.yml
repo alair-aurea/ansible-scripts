@@ -1,0 +1,54 @@
+---
+
+  - name: Get gradle
+    get_url:
+      url: "https://services.gradle.org/distributions/gradle-4.10-rc-2-all.zip"
+      dest: /home/ec2-user
+      
+  - name: Unzip gradle
+    unarchive:
+      src: "/home/ec2-user/gradle-4.10-rc-2-all.zip"
+      dest: "/opt"
+      remote_src: yes
+      
+  - name: Create the symlink to Gradle
+    file:
+      src: "/opt/gradle-4.10-rc-2/bin/gradle"
+      path: "/usr/bin/gradle"
+      state: link
+ 
+  - name: Get YourKit
+    get_url:
+      url: "https://www.yourkit.com/download/YourKit-JavaProfiler-2018.04-b81.zip"
+      dest: /home/ec2-user
+      
+  - name: Unzip YourKit
+    unarchive:
+      src: "/home/ec2-user/YourKit-JavaProfiler-2018.04-b81.zip"
+      dest: "/opt"
+      remote_src: yes
+      
+  - name: Create the symlink to Yourkit integrate
+    file:
+      src: "/opt/YourKit-JavaProfiler-2018.04/bin/integrate.sh"
+      path: "/usr/bin/integrate"
+      state: link
+
+  - name: Create the symlink to Yourkit profiler
+    file:
+      src: "/opt/YourKit-JavaProfiler-2018.04/bin/profiler.sh"
+      path: "/usr/bin/profiler"
+      state: link
+  
+  - name: Chromium
+    debug:
+      msg: "Not installing Chromium. Is it required?"
+  
+  - name: Redis
+    debug:
+      msg: "Not installing Redis. Is it required?"
+  
+
+  - name: Oracle SQL Developer
+    debug:
+      msg: "Not installing Oracle SQL Developer. Is it required?"

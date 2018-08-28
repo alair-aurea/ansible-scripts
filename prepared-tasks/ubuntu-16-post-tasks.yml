@@ -1,0 +1,64 @@
+---
+
+  # Install YourKit
+  
+  - name: Get YourKit
+    get_url:
+      url: "https://www.yourkit.com/download/YourKit-JavaProfiler-2018.04-b81.zip"
+      dest: /home/ubuntu
+      
+  - name: Unzip YourKit
+    unarchive:
+      src: "/home/ubuntu/YourKit-JavaProfiler-2018.04-b81.zip"
+      dest: "/opt"
+      remote_src: yes
+      
+  - name: Create the symlink to Yourkit integrate
+    file:
+      src: "/opt/YourKit-JavaProfiler-2018.04/bin/integrate.sh"
+      path: "/usr/bin/integrate"
+      state: link
+
+  - name: Create the symlink to Yourkit profiler
+    file:
+      src: "/opt/YourKit-JavaProfiler-2018.04/bin/profiler.sh"
+      path: "/usr/bin/profiler"
+      state: link
+      
+      
+  # Install Redis 
+  - name: Get Redis
+    get_url:
+      url: "http://download.redis.io/redis-stable.tar.gz"
+      dest: /home/ubuntu
+      
+  - name: Unarchive Redis
+    unarchive:
+      src: "/home/ubuntu/redis-stable.tar.gz"
+      dest: "/home/ubuntu"
+      remote_src: yes
+  
+  # Build the default target
+  - name: Build Redis
+    make:
+      chdir: /home/ubuntu/redis-stable
+
+  # Run test target
+  - name: Test Redis Installation
+    make: 
+      chdir: /home/ubuntu/redis-stable
+      target: test
+
+  # Run install target as root
+  - name: Install Redis (Make Install)
+    make:
+      chdir: /home/ubuntu/redis-stable
+      target: install
+
+  
+  # Other software that must be installed
+
+  - name: Oracle SQL Developer
+    debug:
+      msg: "Not installing Oracle SQL Developer. Is it required?"
+

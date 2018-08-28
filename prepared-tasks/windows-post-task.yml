@@ -1,0 +1,5 @@
+---
+
+  - name: Oracle SQL Developer
+    debug:
+      msg: "Executing windows post-task"
