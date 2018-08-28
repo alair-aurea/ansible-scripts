@@ -44,7 +44,7 @@ class MainScript():
         
         print
         
-        usesKey = prompt('Connect using Key File? (y/N): ', validator=validators.YesNoValidator())
+        usesKey = prompt('Connect using Key File? (y/N): ', validator=validators.YesNoValidator()).lower()
         
         if ( usesKey == 'y' ):
             fileSelector = FileSelector("keys/", (".pem", ".ppk"), "Select the key file")
@@ -58,7 +58,7 @@ class MainScript():
                 usesKey = 'n'
                 
         
-        if ( usesKey == 'n' ):
+        if ( usesKey == 'n' or usesKey == '' ):
             host_config['security'] = 'pass'
             host_config['pass'] = prompt('password: ', is_password=True)
 
@@ -71,7 +71,7 @@ class MainScript():
             print "[Error] Cannot load configs. Do the config files exist? Correct the error and run again."
             return
             
-        wantsPre = prompt('Execute preparation tasks? (y/N): ', validator=validators.YesNoValidator())
+        wantsPre = prompt('Execute preparation tasks? (y/N): ', validator=validators.YesNoValidator()).lower()
         
         if ( wantsPre == 'y' ):
             fileSelector = FileSelector("prepared-tasks/", (".yml", ".yaml"), "Select the preparation tasks file")
@@ -99,7 +99,7 @@ class MainScript():
         
         print
         
-        wantsPost = prompt('Execute Post-installation tasks? (y/n): ', validator=validators.YesNoValidator())
+        wantsPost = prompt('Execute Post-installation tasks? (y/N): ', validator=validators.YesNoValidator()).lower()
         
         if ( wantsPost == 'y' ):
             fileSelector = FileSelector("prepared-tasks/", (".yml", ".yaml"), "Select the post-installation tasks file")
