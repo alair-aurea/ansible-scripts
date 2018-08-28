@@ -39,8 +39,8 @@ class PackageHandler():
       
         packages = []
         while(True):
-            additional = prompt('Install any additional package available in ' + self.repository + '? (y/n): ', validator=validators.YesNoValidator())
-            if (additional == 'n'):
+            additional = prompt('Install any additional package available in ' + self.repository + '? (y/N): ', validator=validators.YesNoValidator()).lower()
+            if (not additional == 'y'):
                 break
             
             packages.append(
