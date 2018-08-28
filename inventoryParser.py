@@ -15,9 +15,12 @@ class InventoryParser():
             self.configs[filename] = config
             
     def getInventoryFilenames( self ):
+        filenames = []
         for (dirpath, dirnames, filenames) in walk(self.invetoryDir):
             filenames = [ dirpath + "/" + fi for fi in filenames if fi.endswith(".inventory") ]
-            return filenames
+            break
+            
+        return filenames
         
     def getInventories( self ):
         return self.configs.keys()
