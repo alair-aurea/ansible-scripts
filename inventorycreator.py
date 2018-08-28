@@ -41,7 +41,7 @@ class InventoryCreator():
         
         section = host_config['distro'] + ':ansible:variables'
         
-        if ( config[section] ):
+        if ( section in config.keys() ):
           for ( key, val ) in config[section].items():
               inventory[host_config['id'] + ":vars"][key] = val
         
