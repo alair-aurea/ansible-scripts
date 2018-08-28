@@ -9,11 +9,26 @@ import validators
 import inquirer
 import yaml
 
-class WindowsScript():         
+class LinuxScript():
+
+    def selectDistro(self):
+        config = configparser.RawConfigParser(allow_no_value=True)
+        config.read('configs/linux.conf')
+        
+        questions = [
+            inquirer.List('distro',
+                  message="Select one distro",
+                  choices=config['distros'],
+              ),
+        ]
+        
+        return inquirer.prompt(questions)['distro']
 
     def execute(self, host_config):
         
         host_config['user'] = prompt('username: ', validator=validators.UsernameValidator())
+        
+        print
         
         usesKey = prompt('Connect using Key File? (y/n): ', validator=validators.YesNoValidator())
         
@@ -27,17 +42,17 @@ class WindowsScript():
         
         print
         
-        host_config['distro'] = 'windows' # windows is considered just one distro
+        host_config['distro'] = self.selectDistro()
         
         wantsPre = prompt('Execute preparation tasks? (y/n): ', validator=validators.YesNoValidator())
         
-        if (wantsPre == 'y'):
+        if ( wantsPre == 'y' ):
             fileSelector = FileSelector("prepared-tasks/", (".yml", ".yaml"), "Select the preparation tasks file")
-            taskfile = fileSelector.select()
-            if (not taskfile is None):
-                host_config['pre-tasks'] = "prepared-tasks/" + taskfile
+            taskFile = fileSelector.select()
+            if (not taskFile is None):
+                host_config['pre-tasks'] = "prepared-tasks/" + task
         
-        packageHandler = PackageHandler("configs/windows.conf", "chocolatey")
+        packageHandler = PackageHandler("configs/linux.conf", "package")
         
         host_config[ 'packages' ] = packageHandler.selectPackages( host_config )
                
@@ -50,11 +65,11 @@ class WindowsScript():
         
         wantsPost = prompt('Execute Post-installation tasks? (y/n): ', validator=validators.YesNoValidator())
         
-        if (wantsPost == 'y'):
+        if ( wantsPost == 'y' ):
             fileSelector = FileSelector("prepared-tasks/", (".yml", ".yaml"), "Select the post-installation tasks file")
-            taskfile = fileSelector.select()
-            if (not taskfile is None):
-                host_config['post-tasks'] = "prepared-tasks/" + taskfile
+            taskFile = fileSelector.select()
+            if (not taskFile is None):
+                host_config['post-tasks'] = "prepared-tasks/" + task
         
         playbook_creator = PlaybookCreator()
         playbook_creator.create(host_config, "./playbooks")

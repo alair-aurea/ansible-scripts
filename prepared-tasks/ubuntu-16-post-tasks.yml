@@ -4,24 +4,24 @@
   
   - name: Get YourKit
     get_url:
-      url: "https://www.yourkit.com/download/YourKit-JavaProfiler-{{ yourkit_version }}-{{ yourkit_minor }}.zip"
+      url: "https://www.yourkit.com/download/YourKit-JavaProfiler-2018.04-b81.zip"
       dest: /home/ubuntu
       
   - name: Unzip YourKit
     unarchive:
-      src: "/home/ubuntu/YourKit-JavaProfiler-{{ yourkit_version }}-{{ yourkit_minor }}.zip"
+      src: "/home/ubuntu/YourKit-JavaProfiler-2018.04-b81.zip"
       dest: "/opt"
       remote_src: yes
       
   - name: Create the symlink to Yourkit integrate
     file:
-      src: "/opt/YourKit-JavaProfiler-{{ yourkit_version }}/bin/integrate.sh"
+      src: "/opt/YourKit-JavaProfiler-2018.04/bin/integrate.sh"
       path: "/usr/bin/integrate"
       state: link
 
   - name: Create the symlink to Yourkit profiler
     file:
-      src: "/opt/YourKit-JavaProfiler-{{ yourkit_version }}/bin/profiler.sh"
+      src: "/opt/YourKit-JavaProfiler-2018.04/bin/profiler.sh"
       path: "/usr/bin/profiler"
       state: link
       

@@ -9,6 +9,12 @@ class PlaybookCreator():
         mainPlay['name'] = "Auto-generated Playbook for " + host_config['id']
         mainPlay['hosts'] = "{{ HOSTS }}"
         
+        if ( host_config['os'] == 'windows' ):
+            packager = 'win_chocolatey'
+        else:
+            packager = 'package'
+            mainPlay['become'] = 'yes'
+        
         taskList = []
         
         taskInfo = {
@@ -27,7 +33,7 @@ class PlaybookCreator():
         
         taskPackages = {
             "name": "Install OS pre-selected packages",
-            "win_chocolatey": {
+            packager: {
                 "name": "{{ item }}",
                 "state": "present"
             },
@@ -41,7 +47,7 @@ class PlaybookCreator():
         
         taskAdditional = {
             "name": "Install OS additional packages",
-            "win_chocolatey": {
+            packager: {
                 "name": "{{ item }}",
                 "state": "present"
             },

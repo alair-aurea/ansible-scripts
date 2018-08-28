@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import WordCompleter
-from osscriptselector import OsScriptSelector
+from mainscript import MainScript
 import inquirer
 
 import validators
@@ -43,8 +43,5 @@ if __name__ == "__main__":
     
     host_config['os'] = answers['os']
     
-    selector = OsScriptSelector()
-    
-    selectedOSScript = getattr(selector, host_config['os'])
-    
-    selectedOSScript( host_config )
+    script = MainScript( host_config )
+    script.execute()

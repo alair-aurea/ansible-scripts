@@ -6,9 +6,9 @@ import validators
 
 class PackageHandler():
 
-    def __init__( self, config_file, repository ):
+    def __init__( self, config_file ):
         self.config_file = config_file
-        self.repository = repository
+        self.repository = 'package'
 
     def selectPackages( self, host_config ):
         base_config = configparser.RawConfigParser(allow_no_value=True)
