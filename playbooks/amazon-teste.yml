@@ -1,0 +1,22 @@
+- become: 'yes'
+  hosts: '{{ HOSTS }}'
+  name: Auto-generated Playbook for amazon-teste
+  tasks:
+  - debug: msg="Selected OS -> {{ ansible_distribution }}; Major version -> {{ ansible_distribution_major_version}}"
+    name: Print Host OS
+  - include_tasks: ../prepared-tasks/amazon-pre-tasks.yml
+    name: Execute preparation tasks
+  - name: Install OS pre-selected packages
+    package:
+      name: '{{ item }}'
+      state: present
+    with_items:
+    - npm
+  - name: Install OS additional packages
+    package:
+      name: '{{ item }}'
+      state: present
+    with_items:
+    - nodejs
+  - include_tasks: ../prepared-tasks/amazon-post-tasks.yml
+    name: Execute post-installation tasks

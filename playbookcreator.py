@@ -1,5 +1,6 @@
 import yaml
 import os
+import constants
 
 class PlaybookCreator():
 
@@ -76,6 +77,6 @@ class PlaybookCreator():
         if not os.path.exists(playbookDir):
             os.makedirs(playbookDir)
                 
-        f = open(playbookDir + host_config['id'] + '.yml', 'w')
+        f = open(playbookDir + host_config['id'] + constants.PLAYBOOK_FILE_EXTENSION, 'w')
         
         yaml.safe_dump([mainPlay], f, default_flow_style=False)

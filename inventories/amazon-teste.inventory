@@ -1,0 +1,8 @@
+[amazon-teste]
+amazon_teste_host ansible_host=vm-00017a42.vdi-vm.devfactory.com
+
+[amazon-teste:vars]
+ansible_user=ec2-user
+ansible_ssh_private_key_file={{ inventory_dir }}/../keys/amazon-vdi.pem
+ansible_connection=ssh
+

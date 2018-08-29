@@ -3,6 +3,7 @@
 import configparser
 from os import walk
 import configparser
+import constants
 
 class InventoryParser():
     def __init__(self, inventoryDir):
@@ -17,7 +18,7 @@ class InventoryParser():
     def getInventoryFilenames( self ):
         filenames = []
         for (dirpath, dirnames, filenames) in walk(self.invetoryDir):
-            filenames = [ dirpath + "/" + fi for fi in filenames if fi.endswith(".inventory") ]
+            filenames = [ dirpath + "/" + fi for fi in filenames if fi.endswith(constants.INVENTORY_EXTENSION) ]
             break
         return filenames
         

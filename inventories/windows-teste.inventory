@@ -1,0 +1,10 @@
+[windows-teste]
+windows_teste_host ansible_host=vm-00017a9f.vdi-vm.devfactory.com
+
+[windows-teste:vars]
+ansible_user=administrator
+ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
+ansible_connection=winrm
+ansible_winrm_transport=ntlm
+ansible_winrm_server_cert_validation=ignore
+

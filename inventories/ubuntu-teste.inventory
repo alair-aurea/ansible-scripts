@@ -1,0 +1,9 @@
+[ubuntu-teste]
+ubuntu_teste_host ansible_host=10.66.103.27
+
+[ubuntu-teste:vars]
+ansible_user=ubuntu
+ansible_ssh_private_key_file={{ inventory_dir }}/../keys/ubuntu-vdi.pem
+ansible_connection=ssh
+ansible_python_interpreter=/usr/bin/python3
+
