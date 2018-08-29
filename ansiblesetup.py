@@ -25,20 +25,24 @@ class AnsibleSetup():
         host_config['dev'] = env['dev']     
         host_config['os'] = env['os']
         
-        user = self.askUserQuestions()
-        host_config['user'] = user['username']
+        host_config['user'] = self.askUsername()
+        print
         
-        fallbackToPass = False
-        if ( user['key-security'] ):
+        usekey = self.askUseKeySecurity()
+        
+        while( usekey ):
             fileSelector = FileSelector(constants.KEY_FILES_DIR, (".pem", ".ppk"), constants.KEY_FILE_TEXT)
             keyFile = fileSelector.select()
             if ( not keyFile ):
-                fallbackToPass = True
+                print constants.NO_KEY_AVAILABLE                
+                print
+                usekey = not self.askFallbackToPass()
             else:
                 host_config['key-file'] = keyFile
                 host_config['security'] = 'key'
+                break
         
-        if ( not user['key-security'] or fallbackToPass ):
+        if ( not usekey ):
             host_config['security'] = 'pass'
             host_config['pass'] = self.askPass()
         
@@ -154,24 +158,23 @@ class AnsibleSetup():
         return inquirer.prompt(questions)
 
   
-    def getUsernameQuestion( self ):
-        return inquirer.Text('username',
+    def askUsername( self ):
+        return inquirer.prompt([
+                inquirer.Text('username',
                     constants.USERNAME_TEXT,
                     validate=validators.usernameValidate 
                 )
-    
-    def getSecurityTypeQuestion( self ):
-        return inquirer.Confirm('key-security',
+            ])['username']
+        
+        
+    def askUseKeySecurity( self ):
+        return inquirer.prompt([
+                inquirer.Confirm('key-security',
                     message=constants.USE_KEY_FILE_TEXT,
                     default=True
                 )
-  
-    def askUserQuestions( self ):
-        questions = [
-            self.getUsernameQuestion(),
-            self.getSecurityTypeQuestion(),
-        ]
-        return inquirer.prompt(questions)
+            ])['key-security']
+
 
     def getPassQuestion( self ):
         return inquirer.Password('password',
@@ -225,3 +228,11 @@ class AnsibleSetup():
         ]
         
         return inquirer.prompt(questions)['distro']
+
+    def askFallbackToPass( self ):
+        return inquirer.prompt([
+                inquirer.List('fallback-to-pass',
+                    message=constants.SELECT_ACTION,
+                    choices= [constants.ADD_KEY_AND_RETRY, constants.FALLBACK_TO_PASS]
+                )
+            ])['fallback-to-pass'] == constants.FALLBACK_TO_PASS
