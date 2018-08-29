@@ -20,12 +20,16 @@ class AnsibleSetup():
 
         host_config['id'] = self.askHostId()
         
-        env = self.askEnvQuestions()
-        host_config['address'] = env['hostaddress']
-        host_config['dev'] = env['dev']     
-        host_config['os'] = env['os']
+        host_config['address'] = self.askHostAddress()
+        
+        host_config['os'] = self.askOS()
+        
+        host_config['distro'] = self.askDistro( host_config['os'] )
+        
+        host_config['dev'] = self.askDevEnv( host_config['distro'] )
         
         host_config['user'] = self.askUsername()
+        
         print
         
         usekey = self.askUseKeySecurity()
@@ -46,9 +50,6 @@ class AnsibleSetup():
             host_config['security'] = 'pass'
             host_config['pass'] = self.askPass()
         
-        
-        
-        host_config['distro'] = self.askDistro( host_config )
         
         usePreTask = self.askUsePreparationTaskFile()
         if ( usePreTask ):
@@ -129,34 +130,44 @@ class AnsibleSetup():
                 else:
                     print
     
-    def getHostAddressQuestion( self ):
-        return inquirer.Text('hostaddress',
-                    constants.HOST_ADDRESS_TEXT,
-                    validate=validators.hostAddressValidate 
-                )
+    def askHostAddress( self ):
+        return inquirer.prompt([
+                    inquirer.Text('hostaddress',
+                        constants.HOST_ADDRESS_TEXT,
+                        validate=validators.hostAddressValidate 
+                    )
+                ])['hostaddress']
                 
+    
+    def getConfiguredDevEnvs( self, distro ):
+        config = configparser.RawConfigParser(allow_no_value=True)
+        if (distro == 'windows'):
+            config.read(constants.CONFIGS_DIR + '/windows.conf')
+        else:
+            config.read(constants.CONFIGS_DIR + '/linux.conf')
+        
+        sections = [section.split(':') for section in config.sections() if section.count(':') == 2]
+        devs = [section[1] for section in sections if section[0] == distro and section[2] == 'package']
+        return devs
+           
+        
                 
-    def getDevEnvQuestion( self ):
-        return inquirer.List('dev',
-                    message=constants.DEVELOPMENT_ENV_TEXT,
-                    choices=['Java', '.NET', 'C++'],
-                )
+    def askDevEnv( self, distro ):
+        return inquirer.prompt([
+                    inquirer.List('dev',
+                        message=constants.DEVELOPMENT_ENV_TEXT,
+                        choices=self.getConfiguredDevEnvs( distro ),
+                    )
+                ])['dev'] 
+     
                 
-    def getOSQuestion( self ):
-        return inquirer.List('os',
-                    message=constants.BASE_OS_TEXT,
-                    choices=['linux', 'windows'],
-                )
-
-    def askEnvQuestions( self ):
-        questions = [
-            self.getHostAddressQuestion(),
-            self.getDevEnvQuestion(),
-            self.getOSQuestion(),
-        ]
-      
-        return inquirer.prompt(questions)
-
+    def askOS( self ):
+        return inquirer.prompt([
+                    inquirer.List('os',
+                        message=constants.BASE_OS_TEXT,
+                        choices=['linux', 'windows'],
+                    )
+                ])['os']
   
     def askUsername( self ):
         return inquirer.prompt([
@@ -212,9 +223,9 @@ class AnsibleSetup():
         ]
         return inquirer.prompt(questions)['post-tasks']
         
-    def askDistro( self, host_config ):
+    def askDistro( self, os ):
         
-        if (host_config['os'] == 'windows'):
+        if (os == 'windows'):
             return 'windows'
       
         config = configparser.RawConfigParser(allow_no_value=True)
