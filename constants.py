@@ -9,7 +9,7 @@ CONFIGS_DIR = 'configs'
 
 
 # user texts
-CREATE_NEW_HOST_TEXT = 'Create new Host'
+CREATE_NEW_HOST_TEXT = 'Create new host or overwrite existing host'
 SELECT_OR_CREATE_HOST_TEXT = 'Select a predefined host or create a new one'
 
 HOST_IDENTIFICATION_TEXT = "Host Inventory Identification"
@@ -26,3 +26,6 @@ USE_PREPARATION_TASK_FILE_TEXT = "Use Preparation task file"
 USE_POST_INSTALLATION_TASK_FILE_TEXT = "Use Post Installation task file"
 PREPARATION_TASK_FILE_TEXT = "Select the preparation tasks file"
 POST_INSTALLATION_TASK_FILE_TEXT = "Select the post-installation tasks file"
+INSTALL_ADDITIONAL_PACKAGES_TEXT = "Install additional packages available in the repository"
+ADDITIONAL_PACKAGES_TEXT = "Package name (this will not be validated by this automation tool)"
+PACKAGES_TEXT = "Select packages"

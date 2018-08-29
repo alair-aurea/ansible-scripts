@@ -3,6 +3,7 @@ from prompt_toolkit import prompt
 import configparser
 import inquirer
 import validators
+import constants
 
 class PackageHandler():
 
@@ -26,7 +27,7 @@ class PackageHandler():
         
         questions = [
             inquirer.Checkbox('packages',
-                message="Which packages do you want to install?",
+                message=constants.PACKAGES_TEXT,
                 choices=packages,
                 default=default
             ),
@@ -39,13 +40,22 @@ class PackageHandler():
       
         packages = []
         while(True):
-            additional = prompt('Install any additional package available in ' + self.repository + '? (y/N): ', validator=validators.YesNoValidator()).lower()
-            if (not additional == 'y'):
+            additional = inquirer.prompt([
+                        inquirer.Confirm('additional',
+                            message=constants.INSTALL_ADDITIONAL_PACKAGES_TEXT,
+                            default=False,
+                        ),
+                    ])['additional']
+            if (not additional):
                 break
             
-            packages.append(
-                prompt('Package name (this will not be validated by this automation tool): ')
-            )
+            package = inquirer.prompt([
+                        inquirer.Text('package',
+                            message=constants.ADDITIONAL_PACKAGES_TEXT
+                        ),
+                    ])['package']
+            
+            packages.append( package )
             print
             
         return packages
