@@ -4,4 +4,7 @@ from ansible_scripts import *
 
 if __name__ == "__main__":
     autoConfig = AutoConfig()
-    autoConfig.run()
+    try:
+        autoConfig.run()
+    except ( TypeError, KeyboardInterrupt ) as e:
+        pass
