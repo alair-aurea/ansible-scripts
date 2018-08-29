@@ -7,11 +7,15 @@ PREPARED_TASKS_DIR = 'prepared-tasks'
 KEY_FILES_DIR = 'keys'
 CONFIGS_DIR = 'configs'
 
+# files
+INVENTORY_EXTENSION = '.inventory'
+CONFIG_FILE_EXTENSION = '.conf'
+PLAYBOOK_FILE_EXTENSION = '.yml'
 
 # user texts
 CREATE_NEW_HOST_TEXT = 'Create new host or overwrite existing host'
-SELECT_OR_CREATE_HOST_TEXT = 'Select a predefined host or create a new one'
-
+DELETE_HOST_TEXT = 'Delete existing host'
+SELECT_HOST_TO_DELETE_TEXT = 'Select host to delete'
 HOST_IDENTIFICATION_TEXT = "Host Inventory Identification"
 HOST_ADDRESS_TEXT = "Hostname or network address"
 DEVELOPMENT_ENV_TEXT = "Development Environment"
@@ -33,3 +37,5 @@ NO_KEY_AVAILABLE = "There is no key available in the 'keys' directory."
 SELECT_ACTION = "Select action"
 ADD_KEY_AND_RETRY = "Add key and try again"
 FALLBACK_TO_PASS = "Fallback to password authentication"
+HOST_DELETED_TEXT = "Host was deleted"
+CANCELED_BY_USER_TEXT = 'Canceled by user'

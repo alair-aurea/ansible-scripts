@@ -53,7 +53,7 @@ class AnsibleSetup():
         
         usePreTask = self.askUsePreparationTaskFile()
         if ( usePreTask ):
-            fileSelector = FileSelector(constants.PREPARED_TASKS_DIR, (".yml", ".yaml"), constants.PREPARATION_TASK_FILE_TEXT)
+            fileSelector = FileSelector(constants.PREPARED_TASKS_DIR, constants.PLAYBOOK_FILE_EXTENSION, constants.PREPARATION_TASK_FILE_TEXT)
             taskFile = fileSelector.select()
             if (taskFile):
                 host_config['pre-tasks'] = constants.PREPARED_TASKS_DIR + "/" + taskFile
@@ -64,7 +64,7 @@ class AnsibleSetup():
         
         print 
         
-        configFile = "configs/" + host_config['os'] + ".conf"
+        configFile = constants.CONFIGS_DIR + '/' + host_config['os'] + constants.CONFIG_FILE_EXTENSION
         
         packageHandler = PackageHandler(configFile)
         

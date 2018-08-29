@@ -1,4 +1,5 @@
 import configparser
+import constants
 import os
 
 class InventoryCreator():
@@ -31,14 +32,9 @@ class InventoryCreator():
         
         
         # copy additional variables from config
-        if (host_config['os'] == 'windows'):
-            configFile = 'configs/windows.conf'
-        else:
-            configFile = 'configs/linux.conf'
-      
+        configFile = constants.CONFIGS_DIR + '/' + host_config['os'] + constants.CONFIG_FILE_EXTENSION
         config = configparser.RawConfigParser(allow_no_value=True)
         config.read(configFile)
-        
         section = host_config['distro'] + ':ansible:variables'
         
         if ( section in config.keys() ):
@@ -52,5 +48,5 @@ class InventoryCreator():
         if not os.path.exists(inventoryDir):
             os.makedirs(inventoryDir)
         
-        f = open(inventoryDir + host_config['id'] + '.inventory', 'w')
+        f = open(inventoryDir + host_config['id'] + constants.INVENTORY_EXTENSION, 'w')
         inventory.write(f, space_around_delimiters=False)
