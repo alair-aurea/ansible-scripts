@@ -1,8 +1,4 @@
 from __future__ import unicode_literals
-from prompt_toolkit.validation import Validator, ValidationError
-from prompt_toolkit.completion import WordCompleter
-from inventoryParser import InventoryParser
-from enum import Enum
 
 import re
 
@@ -25,12 +21,5 @@ def usernameValidate( answers, current ):
     
     return True
 
-
-class YesNoValidator( Validator ):
-    def validate( self, document ):
-        answer = document.text.lower()
-
-        if answer and not answer in ["y", "n"]:
-            raise ValidationError( message='Please answer Yes or No!' )
 
  
