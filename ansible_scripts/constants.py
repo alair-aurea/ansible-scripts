@@ -39,3 +39,4 @@ ADD_KEY_AND_RETRY = "Add key and try again"
 FALLBACK_TO_PASS = "Fallback to password authentication"
 HOST_DELETED_TEXT = "Host was deleted"
 CANCELED_BY_USER_TEXT = 'Canceled by user'
+NO_PACKAGES_AVAILABLE_TEXT = 'No packages were configured'
