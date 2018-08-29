@@ -51,7 +51,8 @@ if __name__ == "__main__":
     
     menuOptions.append( constants.CREATE_NEW_HOST_TEXT )
     
-    menuOptions.append( constants.DELETE_HOST_TEXT )
+    if ( len(hostList) > 0 ):
+        menuOptions.append( constants.DELETE_HOST_TEXT )
     
     print
     
