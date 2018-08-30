@@ -1,5 +1,21 @@
 ---
+  - name: Check Yourkit is installed before from registry
+    win_reg_stat:
+      path: HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\YourKit Java Profiler 2018.04-b81
+      register: yourkitRegistryKeyInfo
 
-  - name: Oracle SQL Developer
-    debug:
-      msg: "Executing windows post-task"
+  - name: Check Yourkit is installed before from default installation path
+    win_stat:
+      path: C:\Program Files\YourKit Java Profiler 2018.04-b81
+    register: yourkitFolderInfo
+
+  - name: Download Yourkit installer if not installed before
+    win_get_url:
+      url: https://www.yourkit.com/download/YourKit-JavaProfiler-2018.04-b81.exe
+      dest: C:\Users\Administrator\Downloads\YourKit-JavaProfiler-2018.04-b81.exe
+    when: (yourkitRegistryKeyInfo is not defined) and (yourkitFolderInfo.stat.exists == False)
+      
+  - name: install Yourkit
+    raw: C:\Users\Administrator\Downloads\YourKit-JavaProfiler-2018.04-b81.exe /S 
+    when: (yourkitRegistryKeyInfo is not defined) and (yourkitFolderInfo.stat.exists == False)    
+
