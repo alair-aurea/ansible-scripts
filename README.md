@@ -19,6 +19,8 @@ For windows managed nodes, please check [here](#windows-setup).
 
 ## Installation on Control Machines
 
+We provide guides to use `ansible-scripts` on Ubuntu 16.04 and Windows. If you do not want to do the installation but still want to use `ansible-scripts` you can skip to [Run Using Docker](#run-using-docker).
+
 ### Ubuntu 16.04
 
 Run the following commands to install on your home folder.
@@ -37,6 +39,25 @@ $ pip install -r requirements.txt
 ### Windows
 
 T.B.D.
+
+### Run Using Docker
+
+A docker image is available to run `ansible-scripts`. If you have docker installed, you just need to create the following tree structure in your home folder:
+
+```
+.
+├── ansible-data
+│   ├── inventories
+│   ├── keys
+│   └── playbooks
+```
+Then, just run:
+
+```
+docker run -it --rm -v ~/ansible-data/keys:/home/ansible/ansible-scripts/keys -v ~/ansible-data/inventories:/home/ansible/ansible-scripts/inventories -v ~/ansible-data/playbooks:/home/ansible/ansible-scripts/playbooks alairjunior/ansiblescripts
+```
+Your data will be available in `~/ansible-data` even if you delete the docker container. Check this [video](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh) to see how it works.
+
 
 ## Quickstart
 
