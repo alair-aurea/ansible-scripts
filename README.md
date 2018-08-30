@@ -1,16 +1,26 @@
 # ansible-scripts
 
-Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
+This automates the process of provisioning remote development environments for the Eng. Faster Team.
 
 ## Requirements
 
+### Local Machine / Control Machine
+
 1. Ansible (Version 2.4+);
-1. openssh-client
+1. SSH client
 1. Git
+
+### Remote Machine / Managed Node
+
+1. SSH (linux) / ... (Windows)
+1. Python 2 (version 2.6 or later) or Python 3 (version 3.5 or later)
+
 
 ## Installation
 
-### Ubuntu 16.04
+### Control Machine
+
+#### Ubuntu 16.04
 
 Run the following commands to install on your home folder.
 
