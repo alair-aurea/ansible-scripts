@@ -1,3 +1,23 @@
+- [ansible-scripts](#ansible-scripts)
+  * [Requirements](#requirements)
+    + [Local Machine / Control Machine](#local-machine---control-machine)
+    + [Remote Machine / Managed Node](#remote-machine---managed-node)
+  * [Installation on Control Machines](#installation-on-control-machines)
+    + [Ubuntu 16.04](#ubuntu-1604)
+    + [Windows](#windows)
+    + [Run Using Docker](#run-using-docker)
+  * [Quickstart](#quickstart)
+  * [Windows Managed Nodes Setup](#windows-managed-nodes-setup)
+    + [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
+  * [Example of inventory file](#example-of-inventory-file)
+  * [OS Specific Playbooks](#os-specific-playbooks)
+- [Current Directory Structure](#current-directory-structure)
+    + [Example inventory file for `basic` winrm connection](#example-inventory-file-for--basic--winrm-connection)
+    + [Example inventory file for `ntlm` winrm connection](#example-inventory-file-for--ntlm--winrm-connection)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 # ansible-scripts
 
 This automates the process of provisioning remote development environments for the Eng. Faster Team.
@@ -23,7 +43,7 @@ We provide guides to use `ansible-scripts` on Ubuntu 16.04 and Windows. If you d
 
 ### Ubuntu 16.04
 
-Run the following commands to install on your home folder.
+Run the following commands to install `ansible-scripts` on your home folder.
 
 ```
 $ sudo apt update
@@ -36,6 +56,8 @@ $ git clone https://github.com/alair-aurea/ansible-scripts.git
 $ cd ansible-scripts
 $ pip install -r requirements.txt
 ```
+Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
+
 ### Windows
 
 T.B.D.
