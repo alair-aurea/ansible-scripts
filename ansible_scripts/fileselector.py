@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from prompt_toolkit import prompt
 from os import walk
 import inquirer
 import constants
