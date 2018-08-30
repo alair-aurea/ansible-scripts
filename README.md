@@ -8,7 +8,7 @@
 - [Managed Nodes Setup](#managed-nodes-setup)
   * [Windows](#windows-1)
   * [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
-- [Quickstart](#quickstart)
+- [Usage](#usage)
   * [Creating Scripts for Managed Nodes](#creating-scripts-for-managed-nodes)
   * [Running the Provisioning Scripts](#running-the-provisioning-scripts)
 - [Advanced Topics](#advanced-topics)
@@ -109,7 +109,7 @@ powershell.exe -ExecutionPolicy ByPass -File $file
 
 After this step ansible can connect to windows machine with not secure `ntlm` configuration. 
 
-# Quickstart
+# Usage
 
 The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
 
