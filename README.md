@@ -77,24 +77,9 @@ docker run -it --rm -v ~/ansible-data/keys:/home/ansible/ansible-scripts/keys -v
 ```
 Your data will be available in `~/ansible-data` even if you delete the docker container. Check this [video](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh) to see how it works.
 
+# Managed Nodes Setup
 
-# Quickstart
-
-The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
-
-## Setup Managed Nodes
-
-After running `ansible-scripts` for the first time you should see the following menu:
-
-![Create new Host Menu](figures/create_new_host.png)
-
-To create a new host, just follow the prompts. Check [this video](https://drive.google.com/open?id=1aLZP0MF4ZIiYITmFetV3bA7i_F2oJCU1) to see an example.
-
-## Running the Provisioning Scripts
-
-When a managed node (host) is available, you may run the script from the initial menu. [This video](https://drive.google.com/open?id=1SBDjO8uC4Re0uoLKki-lBdtC_Nsp6mqJ) shows how to do it.
-
-# Windows Managed Nodes Setup
+## Windows
 
 In order to a Control Machine to use Ansible for controlling a Windows Managed Node, it is necessary to follow some procedures. Mostly of the Windows related are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
 
@@ -120,7 +105,26 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you can use example inventory file for `ntlm` connection. Example of inventory files can be seen below.
+After this step ansible can connect to windows machine with not secure `ntlm` configuration. 
+
+
+# Quickstart
+
+The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
+
+## Creating Scripts for Managed Nodes
+
+After running `ansible-scripts` for the first time you should see the following menu:
+
+![Create new Host Menu](figures/create_new_host.png)
+
+To create a new host, just follow the prompts. Check [this video](https://drive.google.com/open?id=1aLZP0MF4ZIiYITmFetV3bA7i_F2oJCU1) to see an example.
+
+## Running the Provisioning Scripts
+
+When a managed node (host) is available, you may run the script from the initial menu. [This video](https://drive.google.com/open?id=1SBDjO8uC4Re0uoLKki-lBdtC_Nsp6mqJ) shows how to do it.
+
+Example of inventory files can be seen below.
 
 # Advanced Topics
 
