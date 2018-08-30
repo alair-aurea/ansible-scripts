@@ -143,3 +143,11 @@ Example of inventory files can be seen below.
 ## Managing Configuration Files
 
 ## What if...
+
+### ... I am using another linux distribution?
+
+### ... some package is broken on the repository?
+
+### ... I need a tool that is not being installed?
+
+### ... I want to use this to configure Dev environment?
