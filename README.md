@@ -6,10 +6,17 @@
   * [Windows](#windows)
   * [Run Using Docker](#run-using-docker)
 - [Quickstart](#quickstart)
+  * [Setup Managed Nodes](#setup-managed-nodes)
+  * [Running the Provisioning Scripts](#running-the-provisioning-scripts)
 - [Windows Managed Nodes Setup](#windows-managed-nodes-setup)
   * [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
+- [Advanced Topics](#advanced-topics)
+  * [Creating Prepared Scripts](#creating-prepared-scripts)
+  * [Managing Configuration Files](#managing-configuration-files)
+  * [What if...](#what-if)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 # Requirements
 
@@ -75,12 +82,17 @@ Your data will be available in `~/ansible-data` even if you delete the docker co
 
 The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
 
-After running you should see the following menu:
+## Setup Managed Nodes
+
+After running `ansible-scripts` for the first time you should see the following menu:
 
 ![Create new Host Menu](figures/create_new_host.png)
 
 To create a new host, just follow the prompts. Check [this video](https://drive.google.com/open?id=1aLZP0MF4ZIiYITmFetV3bA7i_F2oJCU1) to see an example.
 
+## Running the Provisioning Scripts
+
+When a managed node (host) is available, you may run the script from the initial menu. [This video](https://drive.google.com/open?id=1SBDjO8uC4Re0uoLKki-lBdtC_Nsp6mqJ) shows how to do it.
 
 # Windows Managed Nodes Setup
 
@@ -110,112 +122,10 @@ powershell.exe -ExecutionPolicy ByPass -File $file
 
 After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you can use example inventory file for `ntlm` connection. Example of inventory files can be seen below.
 
+# Advanced Topics
 
---------------------------------------------
+## Creating Prepared Scripts
 
-## Example of inventory file
+## Managing Configuration Files
 
-```
-[ubuntu-vdi]
-10.66.97.200
-
-[ubuntu-vdi:vars]
-ansible_connection=ssh 
-ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file="{{inventory_dir}}/ubuntu-vdi.pem"
-ansible_python_interpreter=/usr/bin/python3
-
-[windows-vdi]
-10.66.97.49
-
-[windows-vdi:vars]
-ansible_connection=winrm 
-ansible_winrm_transport=ntlm
-ansible_ssh_user=administrator
-ansible_winrm_server_cert_validation=ignore
-ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
-
-[all:vars]
-yourkit_version=2018.04
-yourkit_minor=b81
-
-```
-
-There are two entries for each target machine. First, the host (target) connection definitions, like its IP address. Then, the variables, which
-define how to setup the connection. If the connection is secured by a SSH key to connect the variable `ansible_ssh_pass` is not required.
-
-
-## OS Specific Playbooks
-
-For each OS name and major distribution, there are three optional files that may be created:
-
-* `{os-name}\[-major-version\]-pre-tasks.yml`
-
-* `{os-name}\[-major-version\]-packages.yml`
-
-* `{os-name}\[-major-version\]-post-tasks.yml`
-
-Both the `os-version` and `major-version` are printed at the begining of `base.yml` play. Check if the required files exist in the `playbooks` directory.
-If they don't exist, they will be skipped as no one is individually required. The major version of the file is optional. Therefore, both 
-`Ubuntu-18.04-packages.yml` and `Ubuntu-packages.yml` are valid package list files for the Ubuntu distro. The former takes precedence on the later. 
-
-`*-pre-tasks.yml` provides a list of tasks that must run at the begining of the play and `*-post-tasks.yml` lists define the tasks that must run at the end. They
-may include every structure allowed in Playbook tasks. `*-packages.yml` is a list of packages available on the distro repository. The name of the packages may
-be different depending on the distro. 
-
-# Current Directory Structure
-
-Currently the project structure has three directories: `files`, `inventory` and `playbooks`. The `files` directory is intended to store the files required to install the tools. It aims at reducing the dependency of external links (see [this](https://github.com/alair-aurea/ansible-scripts/issues/2) issue). The `playbooks` directory holds the playbooks. There are some general playbooks (like `base.yml`) and OS specifc playbooks (like `Ubuntu-packages.yml`). These files define the steps to be reproduced on the host machine. The `inventory` directory holds the inventory files that define the connection information. It also stores some project specific vars. Ideally, the files in these directory are the only that have to be updated when you connect to a new instance, as long as the vdi image and the required tools do not change. The tree bellow shows an example of directory structure.
-
-```
-.
-├── files
-│   └── YourKit-linux
-├── inventories
-│   ├── amazon-vdi.pem
-│   ├── base.inventory
-│   └── ubuntu-vdi.pem
-├── playbooks
-│   ├── Amazon-packages.yml
-│   ├── Amazon-post-tasks.yml
-│   ├── Amazon-pre-tasks.yml
-│   ├── base.yml
-│   ├── linux-base.yml
-│   ├── Ubuntu-packages.yml
-│   ├── Ubuntu-post-tasks.yml
-│   ├── Ubuntu-pre-tasks.yml
-│   └── windows-base.yml
-└── README.md
-```
-
-This structure is not following yet the [Ansible Best Practices Guide](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html). This issue will be addressed in the future.
-
-
-### Example inventory file for `basic` winrm connection
-
-```
-[windows-vdi]
-10.66.97.49
-
-[windows-vdi:vars]
-ansible_connection=winrm
-ansible_winrm_transport=basic
-ansible_ssh_user=administrator
-ansible_winrm_server_cert_validation=ignore
-ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
-
-```
-### Example inventory file for `ntlm` winrm connection
-
-```
-[windows-vdi]
-10.66.97.49
-
-[windows-vdi:vars]
-ansible_connection=winrm 
-ansible_winrm_transport=ntlm
-ansible_ssh_user=administrator
-ansible_winrm_server_cert_validation=ignore
-ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
-
-```
+## What if...
