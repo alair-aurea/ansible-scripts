@@ -151,3 +151,5 @@ Example of inventory files can be seen below.
 ### ... I need a tool that is not being installed?
 
 ### ... I want to use this to configure Dev environment?
+
+### ... there is a tool in pre / post tasks hat I don't need/want to be installed?
