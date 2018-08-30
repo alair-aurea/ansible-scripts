@@ -21,7 +21,7 @@
     
   - name: Check Revert Tool is installed before from default installation path
     win_stat:
-      path: C:\Users\Administrator\Downloads\{{ revert_tool_name }}
+      path: "{{ revert_tool_target_path }}"
     register: revertToolInfo    
     
   - name: Copy Revert Tool to host if not installed before
@@ -35,5 +35,6 @@
       src: C:\Users\Administrator\Downloads\{{ revert_tool_name }}
       dest: "{{ revert_tool_target_path }}"
       creates: "{{ revert_tool_target_path }}"
+    when: revertToolInfo.stat.exists == False
    
 
