@@ -1,47 +1,37 @@
-- [ansible-scripts](#ansible-scripts)
-  * [Requirements](#requirements)
-    + [Local Machine / Control Machine](#local-machine---control-machine)
-    + [Remote Machine / Managed Node](#remote-machine---managed-node)
-  * [Installation on Control Machines](#installation-on-control-machines)
-    + [Ubuntu 16.04](#ubuntu-1604)
-    + [Windows](#windows)
-    + [Run Using Docker](#run-using-docker)
-  * [Quickstart](#quickstart)
-  * [Windows Managed Nodes Setup](#windows-managed-nodes-setup)
-    + [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
-  * [Example of inventory file](#example-of-inventory-file)
-  * [OS Specific Playbooks](#os-specific-playbooks)
-- [Current Directory Structure](#current-directory-structure)
-    + [Example inventory file for `basic` winrm connection](#example-inventory-file-for--basic--winrm-connection)
-    + [Example inventory file for `ntlm` winrm connection](#example-inventory-file-for--ntlm--winrm-connection)
+- [Requirements](#requirements)
+  * [Local Machine / Control Machine](#local-machine---control-machine)
+  * [Remote Machine / Managed Node](#remote-machine---managed-node)
+- [Installation on Control Machines](#installation-on-control-machines)
+  * [Ubuntu 16.04](#ubuntu-1604)
+  * [Windows](#windows)
+  * [Run Using Docker](#run-using-docker)
+- [Quickstart](#quickstart)
+- [Windows Managed Nodes Setup](#windows-managed-nodes-setup)
+  * [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
+# Requirements
 
-# ansible-scripts
-
-This automates the process of provisioning remote development environments for the Eng. Faster Team.
-
-## Requirements
-
-### Local Machine / Control Machine
+## Local Machine / Control Machine
 
 1. Ansible (Version 2.4+);
 1. SSH client
 1. Git
 
-### Remote Machine / Managed Node
+## Remote Machine / Managed Node
 
 1. SSH (linux)
 1. Python 2 (version 2.6 or later) or Python 3 (version 3.5 or later)
 
 For windows managed nodes, please check [here](#windows-setup).
 
-## Installation on Control Machines
+
+# Installation on Control Machines
 
 We provide guides to use `ansible-scripts` on Ubuntu 16.04 and Windows. If you do not want to do the installation but still want to use `ansible-scripts` you can skip to [Run Using Docker](#run-using-docker).
 
-### Ubuntu 16.04
+## Ubuntu 16.04
 
 Run the following commands to install `ansible-scripts` on your home folder.
 
@@ -58,11 +48,11 @@ $ pip install -r requirements.txt
 ```
 Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
 
-### Windows
+## Windows
 
 T.B.D.
 
-### Run Using Docker
+## Run Using Docker
 
 A docker image is available to run `ansible-scripts`. If you have docker installed, you just need to create the following tree structure in your home folder:
 
@@ -81,7 +71,7 @@ docker run -it --rm -v ~/ansible-data/keys:/home/ansible/ansible-scripts/keys -v
 Your data will be available in `~/ansible-data` even if you delete the docker container. Check this [video](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh) to see how it works.
 
 
-## Quickstart
+# Quickstart
 
 The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
 
@@ -92,11 +82,11 @@ After running you should see the following menu:
 To create a new host, just follow the prompts. Check [this video](https://drive.google.com/open?id=1aLZP0MF4ZIiYITmFetV3bA7i_F2oJCU1) to see an example.
 
 
-## Windows Managed Nodes Setup
+# Windows Managed Nodes Setup
 
 In order to a Control Machine to use Ansible for controlling a Windows Managed Node, it is necessary to follow some procedures. Mostly of the Windows related are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
 
-### Microsoft Windows Prerequisites for Ansible
+## Microsoft Windows Prerequisites for Ansible
 
 1) PowerShell 3.0 or newer
 2) At least .NET 4.0
