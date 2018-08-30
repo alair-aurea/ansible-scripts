@@ -15,7 +15,7 @@ This automates the process of provisioning remote development environments for t
 1. SSH (linux)
 1. Python 2 (version 2.6 or later) or Python 3 (version 3.5 or later)
 
-For windows managed nodes, please check [here](#Windows-Setup).
+For windows managed nodes, please check [here](#windows-setup).
 
 ## Installation
 
