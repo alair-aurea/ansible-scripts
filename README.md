@@ -17,11 +17,9 @@ This automates the process of provisioning remote development environments for t
 
 For windows managed nodes, please check [here](#windows-setup).
 
-## Installation
+## Installation on Control Machines
 
-### Control Machine
-
-#### Ubuntu 16.04
+### Ubuntu 16.04
 
 Run the following commands to install on your home folder.
 
@@ -33,14 +31,14 @@ $ git clone https://github.com/alair-aurea/ansible-scripts.git
 $ cd ~/ansible-scripts
 $ pip install -r requirements.txt
 ```
+### Windows
+
+T.B.D.
 
 ## Quickstart
 
-The tool have a user interface that guides the user through the configuration process. To run it, just execute:
+The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
 
-```
-$ ./run.py
-```
 After running you should see the following menu:
 
 ![Create new Host Menu](figures/create_new_host.png)
