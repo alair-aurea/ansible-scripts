@@ -46,7 +46,7 @@ After running you should see the following menu:
 
 ![Create new Host Menu](figures/create_new_host.png)
 
-To create a new host, just follow the prompts. Check [this video](https://drive.google.com/file/d/1x0DproJWjYGUw2YDN8bduKaJKpkL8VL_/view?usp=sharing) to see an example.
+To create a new host, just follow the prompts. Check [this video](https://drive.google.com/open?id=1aLZP0MF4ZIiYITmFetV3bA7i_F2oJCU1) to see an example.
 
 ## Example of inventory file
 
