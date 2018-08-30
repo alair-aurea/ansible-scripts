@@ -48,6 +48,38 @@ After running you should see the following menu:
 
 To create a new host, just follow the prompts. Check [this video](https://drive.google.com/open?id=1aLZP0MF4ZIiYITmFetV3bA7i_F2oJCU1) to see an example.
 
+
+## Windows Managed Nodes Setup
+
+In order to a Control Machine to use Ansible for controlling a Windows Managed Node, it is necessary to follow some procedures. Mostly of the Windows related are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
+
+### Microsoft Windows Prerequisites for Ansible
+
+1) PowerShell 3.0 or newer
+2) At least .NET 4.0
+
+    * You can find detailed original post in below link.
+      `https://docs.ansible.com/ansible/2.5/user_guide/windows_setup.html`
+    * To check your powershell version; `$PSVersionTAble.PSVersion`
+
+3) WinRM listener should be created and activated.
+
+Connect to the VDI Instance and open a PowerShell. Then, execute the following commands:
+
+```
+$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
+$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
+
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+
+powershell.exe -ExecutionPolicy ByPass -File $file
+```
+
+After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you can use example inventory file for `ntlm` connection. Example of inventory files can be seen below.
+
+
+--------------------------------------------
+
 ## Example of inventory file
 
 ```
@@ -125,33 +157,6 @@ Currently the project structure has three directories: `files`, `inventory` and 
 
 This structure is not following yet the [Ansible Best Practices Guide](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html). This issue will be addressed in the future.
 
-# Windows Setup
-
-In order to a monitor computer to use Ansible for controlling a Windows host, it is necessary to follow some procedures. Mostly of the Windows related
-are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
-
-## Microsoft Windows Prerequisites for Ansible
-1) PowerShell 3.0 or newer
-2) At least .NET 4.0
-
-    * You can find detailed original post in below link.
-      `https://docs.ansible.com/ansible/2.5/user_guide/windows_setup.html`
-    * To check your powershell version; `$PSVersionTAble.PSVersion`
-
-3) WinRM listener should be created and activated.
-
-Connect to the VDI Instance and open a PowerShell. Then, execute the following commands:
-
-```
-$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
-$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
-
-(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
-
-powershell.exe -ExecutionPolicy ByPass -File $file
-```
-
-After this step ansible can connect to windows machine with not secure `basic` configuration and if more secure connection is preferred you can use example inventory file for `ntlm` connection. Example of inventory files can be seen below.
 
 ### Example inventory file for `basic` winrm connection
 
@@ -180,9 +185,4 @@ ansible_ssh_user=administrator
 ansible_winrm_server_cert_validation=ignore
 ansible_ssh_pass=ppuROilu&IK=?JgaQFxZ%3OboIUiTHk5
 
-```
-To get information about the winrm listeners, just run:
-
-```
-winrm enumerate winrm/config/Listener
 ```
