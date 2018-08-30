@@ -83,20 +83,27 @@ Your data will be available in `~/ansible-data` even if you delete the docker co
 
 # Managed Nodes Setup
 
+## Linux
+
+To control a Linux node, the only requirements are:
+
+1. Python 2 (version 2.6 or later) or Python 3 (version 3.5 or later)
+1. A running ssh server
+
 ## Windows
 
 In order to a Control Machine to use Ansible for controlling a Windows Managed Node, it is necessary to follow some procedures. Mostly of the Windows related are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
 
 ### Microsoft Windows Prerequisites for Ansible
 
-1) PowerShell 3.0 or newer
-2) At least .NET 4.0
+1. PowerShell 3.0 or newer
+1. At least .NET 4.0
 
     * You can find detailed original post in below link.
       `https://docs.ansible.com/ansible/2.5/user_guide/windows_setup.html`
     * To check your powershell version; `$PSVersionTAble.PSVersion`
 
-3) WinRM listener should be created and activated.
+1. WinRM listener should be created and activated.
 
 Connect to the VDI Instance and open a PowerShell. Then, execute the following commands:
 
