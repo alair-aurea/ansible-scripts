@@ -5,17 +5,19 @@
   * [Ubuntu 16.04](#ubuntu-1604)
   * [Windows](#windows)
   * [Run Using Docker](#run-using-docker)
-- [Quickstart](#quickstart)
-  * [Setup Managed Nodes](#setup-managed-nodes)
-  * [Running the Provisioning Scripts](#running-the-provisioning-scripts)
-- [Windows Managed Nodes Setup](#windows-managed-nodes-setup)
+- [Managed Nodes Setup](#managed-nodes-setup)
+  * [Windows](#windows-1)
   * [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
+- [Quickstart](#quickstart)
+  * [Creating Scripts for Managed Nodes](#creating-scripts-for-managed-nodes)
+  * [Running the Provisioning Scripts](#running-the-provisioning-scripts)
 - [Advanced Topics](#advanced-topics)
   * [Creating Prepared Scripts](#creating-prepared-scripts)
   * [Managing Configuration Files](#managing-configuration-files)
   * [What if...](#what-if)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 # Requirements
@@ -106,7 +108,6 @@ powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
 After this step ansible can connect to windows machine with not secure `ntlm` configuration. 
-
 
 # Quickstart
 
