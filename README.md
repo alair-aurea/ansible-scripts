@@ -2,18 +2,39 @@
 
 Ansible installation Playbooks for provisioning VDI images for Eng. Faster Team.
 
-# Quickstart
+## Requirements
 
-1. Install ansible (version 2.4+);
-2. Clone this repository;
-3. Create a new `.inventory` file or add/update `base.inventory` connection parameters. `base.inventory` is in the project's `inventories` directory (see [here](#example-of-inventory-file));
-4. Create the OS specific playbooks, if they do not exist. Check how to do it [here](#os-specific-playbooks).
-5. If target machine is Linux. Copy the `.pem`file to inventories folder with the linux specific naming (ex: ubuntu-vdi.pem, amazon-vdi.pem) and change its permissions using below script.
+1. Ansible (Version 2.4+);
+1. openssh-client
+1. Git
 
-   `chmod go-rw ubuntu-vdi.pem`
+## Installation
 
-6. Execute `ansible-playbook -i inventories/base.inventory -e HOSTS=aws-vdi playbooks/base.yml` or use the `.inventory` file you created. Use the appropriate value
-in the `HOSTS` variable to select the intended host definition.
+### Ubuntu 16.04
+
+Run the following commands to install on your home folder.
+
+```
+$ sudo apt update
+$ sudo apt install ansible openssh-client git python-pip
+$ cd ~
+$ git clone https://github.com/alair-aurea/ansible-scripts.git
+$ cd ~/ansible-scripts
+$ pip install -r requirements.txt
+```
+
+## Quickstart
+
+The tool have a user interface that guides the user through the configuration process. To run it, just execute:
+
+```
+$ ./run.py
+```
+After running you should see the following menu:
+
+![Create new Host Menu](figures/create_new_host.png)
+
+To create a new host, just follow the prompts. Check [this video](link) to see an example.
 
 ## Example of inventory file
 
