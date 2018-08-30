@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from prompt_toolkit import prompt
 import configparser
 import inquirer
 import validators
@@ -24,17 +23,21 @@ class PackageHandler():
             packages.append(package)
             if (config[package] == 'yes'):
                 default.append(package)
-        
-        questions = [
-            inquirer.Checkbox('packages',
-                message=constants.PACKAGES_TEXT,
-                choices=packages,
-                default=default
-            ),
-        ]
-        answers = inquirer.prompt(questions)
-        
-        return answers[ 'packages' ]
+        if ( len( packages ) > 0 ):
+              questions = [
+                  inquirer.Checkbox('packages',
+                      message=constants.PACKAGES_TEXT,
+                      choices=packages,
+                      default=default
+                  ),
+              ]
+              answers = inquirer.prompt(questions)            
+              return answers[ 'packages' ]
+        else:
+            configFile = constants.CONFIGS_DIR + '/' + host_config['os'] + constants.CONFIG_FILE_EXTENSION
+            print constants.NO_PACKAGES_AVAILABLE_TEXT + ' in ' + configFile + '. Skipping package selection.'
+            print
+            return []
 
     def selectAdditionalPackages( self ):
       
