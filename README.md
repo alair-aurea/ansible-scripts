@@ -85,7 +85,7 @@ Your data will be available in `~/ansible-data` even if you delete the docker co
 
 In order to a Control Machine to use Ansible for controlling a Windows Managed Node, it is necessary to follow some procedures. Mostly of the Windows related are marked as "not stable interface" on Ansible, which means that Windows host monitoring may break due to updates. 
 
-## Microsoft Windows Prerequisites for Ansible
+### Microsoft Windows Prerequisites for Ansible
 
 1) PowerShell 3.0 or newer
 2) At least .NET 4.0
