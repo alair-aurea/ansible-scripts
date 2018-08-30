@@ -24,6 +24,7 @@ For windows managed nodes, please check [here](#windows-setup).
 Run the following commands to install on your home folder.
 
 ```
+$ sudo apt-add-repository ppa:ansible/ansible
 $ sudo apt update
 $ sudo apt install ansible openssh-client git python-pip
 $ cd ~
