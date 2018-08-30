@@ -31,7 +31,7 @@ $ sudo apt update
 $ sudo apt install ansible
 $ cd ~
 $ git clone https://github.com/alair-aurea/ansible-scripts.git
-$ cd ~/ansible-scripts
+$ cd ansible-scripts
 $ pip install -r requirements.txt
 ```
 ### Windows
