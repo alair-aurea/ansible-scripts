@@ -5,7 +5,7 @@
   * [Ubuntu 16.04](#ubuntu-1604)
   * [Windows](#windows)
     + [Installation using WSL](#installation-using-wsl)
-  * [Run Using Docker](#run-using-docker)
+  * [Running Using Docker](#run-using-docker)
 - [Managed Nodes Setup](#managed-nodes-setup)
   * [Linux](#linux)
   * [Windows](#windows-1)
@@ -107,7 +107,7 @@ To install Cygwin and `ansible-scripts`, follow these steps:
 
 T.B.D.
 -->
-## Run Using Docker
+## Running Using Docker
 
 A docker image is available to run `ansible-scripts`. If you have docker installed, you just need to create the following tree structure in your home folder:
 
