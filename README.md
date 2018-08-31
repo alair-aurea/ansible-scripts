@@ -160,11 +160,11 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-After this step ansible can connect to windows machine with not secure `ntlm` configuration. 
+After this step ansible can connect to windows machine with `ntlm` configuration. 
 
 # Usage
 
-The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
+The tool have a user interface that guides the user through the configuration process. To run it, just go to the repository root directory and run the python script `run.py`.
 
 ## Creating Scripts for Managed Nodes
 
@@ -211,7 +211,7 @@ If the package is not available in the repositories, you'll have to write a task
 
 ### ... there is a tool in pre / post tasks hat I don't need/want to be installed?
 
-Just go to `prepared-tasks` directory and open the prepared playbook containing the tasks that install the tool you want to remove. You can eiter delete the corresponding lines or better, you can copy the file and create a new one without the tool you don't want. 
+Just go to `prepared-tasks` directory and open the prepared playbook containing the tasks that installs the tools you want to remove. You can eiter delete the corresponding lines or better, you can copy the file and create a new one without the tool you don't want. 
 
 ### ... I don't like ansible and prefer \[write here any other scripting language\]
 
