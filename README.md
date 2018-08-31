@@ -1,4 +1,5 @@
 - [Supported Tools](#supported-tools)
+- [Installation Times] (#installation-times)
 - [Requirements](#requirements)
   * [Local Machine / Control Machine](#local-machine---control-machine)
   * [Remote Machine / Managed Node](#remote-machine---managed-node)
@@ -61,6 +62,19 @@
 X	means "no need"
 -	means "no installation support yet"
 +	means "installation supported"
+
+# Installation Times
+
+| Operating System | Technology Category | All Tools in Category Installation Time |
+|:----------------:|:-------------------:|:---------------------------------------:|
+|      Windows     |         Java        |               14mins 3secs              |
+|      Windows     |         .Net        |               28mins 2secs              |
+|      Windows     |         C++         |              38mins 33secs              |
+|   Ubuntu Linux   |         Java        |               7mins 13secs              |
+|   Ubuntu Linux   |         C++         |               6mins 40secs              |
+|   Amazon Linux   |         Java        |               5mins 34secs              |
+|   Amazon Linux   |         C++         |               5mins 11secs              |
+
 
 # Requirements
 
