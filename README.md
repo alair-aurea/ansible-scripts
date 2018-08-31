@@ -54,9 +54,9 @@ For windows managed nodes, please check [here](#windows-setup).
 1. How to setup a Windows Control Machine:
 1. How to run the tool on a Ubuntu Managed Node: [Link](https://drive.google.com/open?id=1SBDjO8uC4Re0uoLKki-lBdtC_Nsp6mqJ)
 1. How to run the tool on a Windows Managed Node  [Link](https://drive.google.com/open?id=1UXBH-SqT_LSs5usUN3HPLtfGIt068Yr_)
-1. How to run from docker: [link](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh)
+1. How to run from docker: [Link](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh)
 1. How to create a new distro [Link](https://drive.google.com/open?id=1WwsTqvW4-VZWc-fhyXbuqvNa2DWoHFfE)
-1. How to create a new dev environment
+1. How to create a new dev environment [Link](https://drive.google.com/open?id=1sB8UJ_xu8iTwxSj3Z_J_p1YNLlVhW1d0)
 1. How to create a new prepared task
 1. How to install a local file to a managed node
 
