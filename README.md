@@ -160,7 +160,7 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file
 ```
 
-After this step ansible can connect to windows machine with not secure `ntlm` configuration. 
+After this step ansible can connect to windows machine with `ntlm` configuration. 
 
 # Usage
 
