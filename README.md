@@ -176,6 +176,10 @@ Example of inventory files can be seen below.
 
 ### ... I am using another linux distribution?
 
+You can create the configuration for the distribution you are working. There is one limitation: for the package selection menu to work properly, the distribution should be supported by [Ansible's package module](https://docs.ansible.com/ansible/2.5/modules/package_module.html). 
+
+Just go to the `configs` directory and add the name of your distribution to `linux.conf` under section `[distros]`. 
+
 ### ... some package is broken on the repository?
 
 ### ... I need a tool that is not being installed?
