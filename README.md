@@ -201,8 +201,12 @@ If the tool is available in the repositories (chocolatey for windows or distro s
 
 If the package is not available in the repositories, you'll have to write a task for installing it. Write a prepared task and select the created file when prompted during Host Configuration Creation. Please, refer to the [Ansible's manual](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html) to understand how to create tasks.
 
-### ... I want to use this to configure Dev environment?
-
 ### ... there is a tool in pre / post tasks hat I don't need/want to be installed?
 
+Just go to `prepared-tasks` directory and open the prepared playbook containing the tasks that install the tool you want to remove. You can eiter delete the corresponding lines or better, you can copy the file and create a new one without the tool you don't want. 
+
 ### ... I don't like ansible and prefer \[write here any other scripting language\]
+
+You can use `ansible-scripts` to copy your script file written on your prefered language to the monitored node, using Ansible's [copy module](https://docs.ansible.com/ansible/2.5/modules/copy_module.html) and [command module](https://docs.ansible.com/ansible/2.5/modules/command_module.html).
+
+### ... I want to use this tool to configure Dev environment?
