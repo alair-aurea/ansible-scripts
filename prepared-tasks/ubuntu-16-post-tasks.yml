@@ -35,6 +35,19 @@
       dest: "/tmp"
       remote_src: yes
   
+  # Build deps
+  
+  - name: Build deps hiredis
+    make:
+      chdir: "/tmp/redis-stable/deps"
+      target: "{{ item }}"
+    with_items:
+    - hiredis
+    - jemalloc
+    - linenoise
+    - lua
+
+  
   # Build the default target
   - name: Build Redis
     make:
