@@ -32,7 +32,7 @@
 
 # Requirements
 
-If you will run `ansible-scripts` from docker, the only requirement is docker. See [here](#run-using-docker).
+If you will run `ansible-scripts` from docker, the only requirement is docker. See [here](#run-using-docker) how to do it.
 
 ## Local Machine / Control Machine
 
