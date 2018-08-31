@@ -184,11 +184,22 @@ Example of inventory files can be seen below.
 
 You can create the configuration for the distribution you are working. There is one limitation: for the package selection menu to work properly, the distribution should be supported by [Ansible's package module](https://docs.ansible.com/ansible/2.5/modules/package_module.html). 
 
-Just go to the `configs` directory and add the name of your distribution to `linux.conf` under section `[distros]`. 
+Follow this steps:
+
+1. Go to `configs` directory and add the name of your distribution to `linux.conf` under section `[distros]`;
+2. Create a section for your distro specific variables, like `[your-distro:ansible:variables]`. These variables are going to be copied to the Ansible's inventory file. Check how these variables work in [Ansible's Variables Document](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
+3. Create a section for each one of the supported dev environments, like `[your-distro:Java:package]` or `[your-distro:C++:package]`. Add the packages that should be available in the menu.
+4. Create prepared task files to perform preparation tasks and post installation tasks.
 
 ### ... some package is broken on the repository?
 
+You don't need to change the `configs` to manage this situation. You can just disable the package using the menu and select the option to install additional packages, writing the correct name of the package there. However, if you want a more definitive solution, you may change the package name on the corresponding os config file.
+
 ### ... I need a tool that is not being installed?
+
+If the tool is available in the repositories (chocolatey for windows or distro specific repository for linux), you may just chose to install additional packages and write the package name when asked. This will create a proper script for installing the package. If you want this package to be available on the package selection menu, you have to include the package in section `distro:dev-env:packages`, where `dev-env` is the type of your development environment (Java, .NET, ...). You can make the package marked to be installed as default by writing `=yes` following the package name. Otherwise, write `=no`.
+
+If the package is not available in the repositories, you'll have to write a task for installing it. Write a prepared task and select the created file when prompted during Host Configuration Creation. Please, refer to the [Ansible's manual](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html) to understand how to create tasks.
 
 ### ... I want to use this to configure Dev environment?
 
