@@ -1,10 +1,10 @@
 #!/usr/bin/python
+import os
 from inventoryParser import InventoryParser
 from ansibleproxy import AnsibleProxy
 from ansiblesetup import AnsibleSetup
 import inquirer
 import constants
-import os
 
 
 class AutoConfig():
