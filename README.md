@@ -50,11 +50,11 @@ For windows managed nodes, please check [here](#windows-setup).
 
 # Quickstart Videos
 
-1. How to setup a Ubuntu Control Machine [Link](#done)
-1. How to setup a Windows Control Machine
-1. How to run the tool on a Ubuntu Managed Node [Link](#done)
+1. How to setup a Ubuntu Control Machine: [Link](#done)
+1. How to setup a Windows Control Machine:
+1. How to run the tool on a Ubuntu Managed Node: [Link](#done)
 1. How to run the tool on a Windows Managed Node  [Link](#done)
-1. How to run from docker
+1. How to run from docker: [link](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh)
 1. How to create a new distro
 1. How to create a new dev environment
 1. How to create a new prepared task
@@ -80,7 +80,6 @@ $ git clone https://github.com/alair-aurea/ansible-scripts.git
 $ cd ansible-scripts
 $ pip install -r requirements.txt
 ```
-Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
 
 ## Windows
 
