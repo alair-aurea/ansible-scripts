@@ -1,5 +1,5 @@
 - [Supported Tools](#supported-tools)
-- [Installation Times] (#installation-times)
+- [Installation Times](#installation-times)
 - [Requirements](#requirements)
   * [Local Machine / Control Machine](#local-machine---control-machine)
   * [Remote Machine / Managed Node](#remote-machine---managed-node)
