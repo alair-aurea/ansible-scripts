@@ -55,7 +55,7 @@ For windows managed nodes, please check [here](#windows-setup).
 1. How to run the tool on a Ubuntu Managed Node: [Link](#done)
 1. How to run the tool on a Windows Managed Node  [Link](#done)
 1. How to run from docker: [link](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh)
-1. How to create a new distro
+1. How to create a new distro [Link](#done)
 1. How to create a new dev environment
 1. How to create a new prepared task
 1. How to install a local file to a managed node
