@@ -39,6 +39,31 @@
       src: "/opt/YourKit-JavaProfiler-2018.04/bin/profiler.sh"
       path: "/usr/bin/profiler"
       state: link
+      
+  # Install Revert Tool
+  - name: Check Revert Tool is installed before from default installation path
+    stat:
+      path: "{{ revert_tool_target_path }}"
+    register: revertToolInfo
+    
+  - name: Copy Revert Tool to host if not installed before
+    copy:
+      src: ../files/{{ revert_tool_name }}
+      dest: /tmp/{{ revert_tool_name }}
+    when: revertToolInfo.stat.exists == False
+
+  - name: Create Revert Tool directory
+    file:
+      path: "{{ revert_tool_target_path }}"
+      state: directory
+      mode: 0755
+    
+  - name: Unzip Revert Tool zip file
+    unarchive:
+      src: /tmp/{{ revert_tool_name }}
+      dest: "{{ revert_tool_target_path }}"
+      remote_src: yes
+    when: revertToolInfo.stat.exists == False
   
   - name: Chromium
     debug:
