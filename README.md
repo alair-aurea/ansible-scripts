@@ -57,6 +57,7 @@ For windows managed nodes, please check [here](#windows-setup).
 1. How to run from docker
 1. How to create a new distro
 1. How to create a new dev environment
+1. How to create a new prepared task
 1. How to install a local file to a managed node
 
 
