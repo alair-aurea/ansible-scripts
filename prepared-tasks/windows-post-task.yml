@@ -17,5 +17,29 @@
       
   - name: install Yourkit
     raw: C:\Users\Administrator\Downloads\YourKit-JavaProfiler-2018.04-b81.exe /S 
-    when: (yourkitRegistryKeyInfo is not defined) and (yourkitFolderInfo.stat.exists == False)    
+    when: (yourkitRegistryKeyInfo is not defined) and (yourkitFolderInfo.stat.exists == False)
+    
+  - name: Check Revert Tool is installed before from default installation path
+    win_stat:
+      path: "{{ revert_tool_target_path }}"
+    register: revertToolInfo
+    
+  - name: Check if Revert Tool Installer is in files directory
+    local_action: stat path=../files/{{ revert_tool_name }}
+    register: revertToolReady
+    when: revertToolInfo.stat.exists == False
+    
+  - name: Copy Revert Tool to host if not installed before
+    win_copy:
+      src: ../files/{{ revert_tool_name }}
+      dest: C:\Users\Administrator\Downloads\{{ revert_tool_name }}
+    when: (revertToolInfo.stat.exists == False) and (revertToolReady.stat.exists == True)
+    
+  - name: Unzip Revert Tool zip file
+    win_unzip:
+      src: C:\Users\Administrator\Downloads\{{ revert_tool_name }}
+      dest: "{{ revert_tool_target_path }}"
+      creates: "{{ revert_tool_target_path }}"
+    when: (revertToolInfo.stat.exists == False) and (revertToolReady.stat.exists == True)
+   
 
