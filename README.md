@@ -61,6 +61,21 @@ Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
 
 ## Windows
 
+Windows isn't supported for the control machine. However, there are some workarounds to run `ansible-scripts` if you are on a windows machine. You can use:
+
+1. [Cygwin](https://cygwin.com) ( Recommended )
+1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Only Windows 10 )
+1. VirtualBox or VMWare to virtualize a machine running linux
+1. Windows Subsystem for Linux (WSL) \[possibly\] ( also only Windows 10 )
+
+### Installation using Cygwin
+
+To install Cygwin and `ansible-scripts`, follow these steps:
+
+1. Download cygwin: [http://cygwin.com/setup-x86_64.exe](http://cygwin.com/setup-x86_64.exe);
+
+## Mac
+
 T.B.D.
 
 ## Run Using Docker
