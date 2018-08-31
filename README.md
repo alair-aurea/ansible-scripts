@@ -64,9 +64,15 @@ Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
 Windows isn't supported for the control machine. However, there are some workarounds to run `ansible-scripts` if you are on a windows machine. You can use:
 
 <!-- 1. [Cygwin](https://cygwin.com)( Recommended ) -->
+1. Windows Subsystem for Linux (WSL) \[possibly\] ( Windows 10 only )
 1. VirtualBox or VMWare to virtualize a machine running linux
-1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Only Windows 10 )
-1. Windows Subsystem for Linux (WSL) \[possibly\] ( also only Windows 10 )
+1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Windows 10 only )
+
+### Installation using WSL
+
+1. Go to [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the instructions to install and run a linux distribution inside Windows. We recommend Ubuntu 16.04. 
+
+1. Run the commands for Ununtu 16.04.
 
 <!--
 ### Installation using Cygwin
