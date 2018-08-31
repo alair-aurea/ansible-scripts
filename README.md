@@ -4,10 +4,13 @@
 - [Installation on Control Machines](#installation-on-control-machines)
   * [Ubuntu 16.04](#ubuntu-1604)
   * [Windows](#windows)
+    + [Installation using WSL](#installation-using-wsl)
+    + [Installation using Cygwin](#installation-using-cygwin)
   * [Run Using Docker](#run-using-docker)
 - [Managed Nodes Setup](#managed-nodes-setup)
+  * [Linux](#linux)
   * [Windows](#windows-1)
-  * [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
+    + [Microsoft Windows Prerequisites for Ansible](#microsoft-windows-prerequisites-for-ansible)
 - [Usage](#usage)
   * [Creating Scripts for Managed Nodes](#creating-scripts-for-managed-nodes)
   * [Running the Provisioning Scripts](#running-the-provisioning-scripts)
@@ -15,8 +18,15 @@
   * [Creating Prepared Scripts](#creating-prepared-scripts)
   * [Managing Configuration Files](#managing-configuration-files)
   * [What if...](#what-if)
+    + [... I am using another linux distribution?](#-i-am-using-another-linux-distribution-)
+    + [... some package is broken on the repository?](#-some-package-is-broken-on-the-repository-)
+    + [... I need a tool that is not being installed?](#-i-need-a-tool-that-is-not-being-installed-)
+    + [... there is a tool in pre / post tasks hat I don't need/want to be installed?](#-there-is-a-tool-in-pre---post-tasks-hat-i-don-t-need-want-to-be-installed-)
+    + [... I don't like ansible and prefer \[write here any other scripting language\]](#-i-don-t-like-ansible-and-prefer---write-here-any-other-scripting-language--)
+    + [... I want to use this tool to configure Dev environment?](#-i-want-to-use-this-tool-to-configure-dev-environment-)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 
 
