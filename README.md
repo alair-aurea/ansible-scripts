@@ -79,7 +79,7 @@ To install Cygwin and `ansible-scripts`, follow these steps:
     ```
 1. Open Cygwin prompt and check which `pip` commando you should use:
     * Run `which pip` and `which pip2`. Do not use the command that gives you something like `cygdrive/c/...`.
-1. From Cygwin bash run `pip install ansible` or `pip2 install ansible`, depending on the results of the previous command.
+1. From Cygwin bash run `pip install -vvv ansible` or `pip2 install -vvv ansible`, depending on the results of the previous command.
     * This command may take a long time. So, be patient.
 
 ## Mac
