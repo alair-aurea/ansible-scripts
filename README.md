@@ -63,29 +63,29 @@ Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
 
 Windows isn't supported for the control machine. However, there are some workarounds to run `ansible-scripts` if you are on a windows machine. You can use:
 
-1. [Cygwin](https://cygwin.com) ( Recommended )
-1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Only Windows 10 )
+[//]: # 1. [Cygwin](https://cygwin.com)( Recommended )
 1. VirtualBox or VMWare to virtualize a machine running linux
+1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Only Windows 10 )
 1. Windows Subsystem for Linux (WSL) \[possibly\] ( also only Windows 10 )
 
-### Installation using Cygwin
+[//]: # ### Installation using Cygwin
 
-To install Cygwin and `ansible-scripts`, follow these steps:
+[//]: # To install Cygwin and `ansible-scripts`, follow these steps:
 
-1. Download Cygwin from [http://cygwin.com/setup-x86_64.exe](http://cygwin.com/setup-x86_64.exe); 
-1. To install Cygwin and all Ansible dependences, run the following command:
-    ```
-    setup-x86_64.exe -q --packages=binutils,curl,cygwin32-gcc-g++,gcc-g++,git,gmp,libffi-devel,libgmp-devel,make,nano,openssh,openssl-devel,python-crypto,python-paramiko,python2,python2-devel,python2-openssl,python2-pip,python2-setuptools
-    ```
-1. Open Cygwin prompt and check which `pip` commando you should use:
-    * Run `which pip` and `which pip2`. Do not use the command that gives you something like `cygdrive/c/...`.
-1. From Cygwin bash run `pip install -vvv ansible` or `pip2 install -vvv ansible`, depending on the results of the previous command.
-    * This command may take a long time. So, be patient.
-1. Run:
-    ```
-    $ git clone https://github.com/alair-aurea/ansible-scripts.git
-    $ cd ansible-scripts
-    $ pip2 install -r requirements.txt
+[//]: # 1. Download Cygwin from [http://cygwin.com/setup-x86_64.exe](http://cygwin.com/setup-x86_64.exe); 
+[//]: # 1. To install Cygwin and all Ansible dependences, run the following command:
+[//]: #    ```
+[//]: #    setup-x86_64.exe -q --packages=binutils,curl,cygwin32-gcc-g++,gcc-g++,git,gmp,libffi-devel,libgmp-devel,make,nano,openssh,openssl-devel,python-crypto,python-paramiko,python2,python2-devel,python2-openssl,python2-pip,python2-setuptools
+[//]: #     ```
+[//]: # 1. Open Cygwin prompt and check which `pip` commando you should use:
+[//]: #     * Run `which pip` and `which pip2`. Do not use the command that gives you something like `cygdrive/c/...`.
+[//]: # 1. From Cygwin bash run `pip install -vvv ansible` or `pip2 install -vvv ansible`, depending on the results of the previous command.
+[//]: #     * This command may take a long time. So, be patient.
+[//]: # 1. Run:
+[//]: #     ```
+[//]: #     $ git clone https://github.com/alair-aurea/ansible-scripts.git
+[//]: #     $ cd ansible-scripts
+[//]: #     $ pip2 install -r requirements.txt
     ```
 ## Mac
 
