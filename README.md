@@ -1,13 +1,13 @@
-- [Supported Tools](#supported-tools)
-- [Installation Times](#installation-times)
 - [Requirements](#requirements)
   * [Local Machine / Control Machine](#local-machine---control-machine)
   * [Remote Machine / Managed Node](#remote-machine---managed-node)
+- [Quickstart Videos](#quickstart-videos)
 - [Installation on Control Machines](#installation-on-control-machines)
   * [Ubuntu 16.04](#ubuntu-1604)
   * [Windows](#windows)
     + [Installation using WSL](#installation-using-wsl)
-  * [Running Using Docker](#run-using-docker)
+    + [Installation using Cygwin](#installation-using-cygwin)
+  * [Running Using Docker](#running-using-docker)
 - [Managed Nodes Setup](#managed-nodes-setup)
   * [Linux](#linux)
   * [Windows](#windows-1)
@@ -15,65 +15,19 @@
 - [Usage](#usage)
   * [Creating Scripts for Managed Nodes](#creating-scripts-for-managed-nodes)
   * [Running the Provisioning Scripts](#running-the-provisioning-scripts)
+- [Preconfigured Tool Sets](#preconfigured-tool-sets)
+- [Installation Times](#installation-times)
 - [Advanced Topics](#advanced-topics)
+  * [Creating Prepared Scripts](#creating-prepared-scripts)
+  * [Managing Configuration Files](#managing-configuration-files)
   * [What if...](#what-if)
     + [... I am using another linux distribution?](#-i-am-using-another-linux-distribution-)
     + [... some package is broken on the repository?](#-some-package-is-broken-on-the-repository-)
     + [... I need a tool that is not being installed?](#-i-need-a-tool-that-is-not-being-installed-)
     + [... there is a tool in pre / post tasks hat I don't need/want to be installed?](#-there-is-a-tool-in-pre---post-tasks-hat-i-don-t-need-want-to-be-installed-)
     + [... I don't like ansible and prefer \[write here any other scripting language\]](#-i-don-t-like-ansible-and-prefer---write-here-any-other-scripting-language--)
-    + [... I want to use this tool to configure Dev environment?](#-i-want-to-use-this-tool-to-configure-dev-environment-)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
-# Supported Tools
-
-|            TOOL NAME            | Windows Support | Ubuntu Support | Amazon Support |
-|:-------------------------------:|:---------------:|:--------------:|:--------------:|
-| Oracle JDK 8                    |        +        |        +       |        +       |
-| Maven                           |        +        |        +       |        +       |
-| Docker & Docker Compose         |        +        |        +       |        +       |
-| MySql Server                    |        +        |        +       |        +       |
-| Nodejs                          |        +        |        +       |        +       |
-| Npm                             |        +        |        +       |        +       |
-| Cygwin                          |        +        |        X       |        X       |
-| Notepad++                       |        +        |        X       |        X       |
-| Eclipse                         |        +        |        X       |        X       |
-| Visual Studio 2015              |        +        |        X       |        X       |
-| Visual Studio 2017              |        +        |        X       |        X       |
-| JetBrains dotTrace              |        +        |        X       |        X       |
-| Telerik Fiddler                 |        +        |        X       |        X       |
-| VS Code                         |        +        |        X       |        X       |
-| MS SQL Server management Studio |        +        |        X       |        X       |
-| Total Commander                 |        +        |        X       |        X       |
-| Sysinternals suite              |        +        |        X       |        X       |
-| Gradle                          |        +        |        +       |        +       |
-| YourKit Java profiler           |        +        |        +       |        +       |
-| GIT                             |        +        |        +       |        +       |
-| Revert Tool                     |        +        |        +       |        +       |
-| Chrome                          |        +        |        +       |        -       |
-| IntelliJ IDEA                   |        +        |        -       |        -       |
-| Redis                           |        +        |        +       |        -       |
-| Firefox Mozilla                 |        +        |        +       |        -       |
-| MySQL Workbench                 |        -        |        +       |        -       |
-| Oracle SQL Developer            |        -        |        -       |        -       |
-| Plan Explorer                   |        -        |        X       |        X       |
-
-+ 'X'	means "no need"
-+ '-'	means "installation not supported yet"
-+ '+'	means "installation supported"
-
-# Installation Times
-
-| Operating System | Technology Category | All Tools in Category Installation Time |
-|:----------------:|:-------------------:|:---------------------------------------:|
-|      Windows     |         Java        |               14mins 3secs              |
-|      Windows     |         .Net        |               28mins 2secs              |
-|      Windows     |         C++         |              38mins 33secs              |
-|   Ubuntu Linux   |         Java        |               7mins 13secs              |
-|   Ubuntu Linux   |         C++         |               6mins 40secs              |
-|   Amazon Linux   |         Java        |               5mins 34secs              |
-|   Amazon Linux   |         C++         |               5mins 11secs              |
 
 
 # Requirements
@@ -242,6 +196,56 @@ When a managed node (host) is available, you may run the script from the initial
 
 Example of inventory files can be seen below.
 
+
+# Preconfigured Tool Sets
+
+|            TOOL NAME            | Windows Support | Ubuntu Support | Amazon Support |
+|:-------------------------------:|:---------------:|:--------------:|:--------------:|
+| Oracle JDK 8                    |        +        |        +       |        +       |
+| Maven                           |        +        |        +       |        +       |
+| Docker & Docker Compose         |        +        |        +       |        +       |
+| MySql Server                    |        +        |        +       |        +       |
+| Nodejs                          |        +        |        +       |        +       |
+| Npm                             |        +        |        +       |        +       |
+| Cygwin                          |        +        |        X       |        X       |
+| Notepad++                       |        +        |        X       |        X       |
+| Eclipse                         |        +        |        X       |        X       |
+| Visual Studio 2015              |        +        |        X       |        X       |
+| Visual Studio 2017              |        +        |        X       |        X       |
+| JetBrains dotTrace              |        +        |        X       |        X       |
+| Telerik Fiddler                 |        +        |        X       |        X       |
+| VS Code                         |        +        |        X       |        X       |
+| MS SQL Server management Studio |        +        |        X       |        X       |
+| Total Commander                 |        +        |        X       |        X       |
+| Sysinternals suite              |        +        |        X       |        X       |
+| Gradle                          |        +        |        +       |        +       |
+| YourKit Java profiler           |        +        |        +       |        +       |
+| GIT                             |        +        |        +       |        +       |
+| Revert Tool                     |        +        |        +       |        +       |
+| Chrome                          |        +        |        +       |        -       |
+| IntelliJ IDEA                   |        +        |        -       |        -       |
+| Redis                           |        +        |        +       |        -       |
+| Firefox Mozilla                 |        +        |        +       |        -       |
+| MySQL Workbench                 |        -        |        +       |        -       |
+| Oracle SQL Developer            |        -        |        -       |        -       |
+| Plan Explorer                   |        -        |        X       |        X       |
+
++ 'X'	means "no need"
++ '-'	means "installation not preconfigured yet"
++ '+'	means "installation preconfigured"
+
+# Installation Times
+
+| Operating System | Technology Category | All Tools in Category Installation Time |
+|:----------------:|:-------------------:|:---------------------------------------:|
+|      Windows     |         Java        |               14mins 3secs              |
+|      Windows     |         .Net        |               28mins 2secs              |
+|      Windows     |         C++         |              38mins 33secs              |
+|   Ubuntu Linux   |         Java        |               7mins 13secs              |
+|   Ubuntu Linux   |         C++         |               6mins 40secs              |
+|   Amazon Linux   |         Java        |               5mins 34secs              |
+|   Amazon Linux   |         C++         |               5mins 11secs              |
+
 # Advanced Topics
 <!--
 ## Creating Prepared Scripts
@@ -279,4 +283,3 @@ Just go to `prepared-tasks` directory and open the prepared playbook containing 
 
 You can use `ansible-scripts` to copy your script file written on your prefered language to the monitored node, using Ansible's [copy module](https://docs.ansible.com/ansible/2.5/modules/copy_module.html) and [command module](https://docs.ansible.com/ansible/2.5/modules/command_module.html).
 
-### ... I want to use this tool to configure Dev environment?
