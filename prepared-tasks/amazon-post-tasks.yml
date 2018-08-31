@@ -1,30 +1,44 @@
 ---
-
+  # Install unzip
+  - name: Installing unzip
+    yum:
+      name: unzip
+      state: present
+  
+    # Install unzip
+  - name: Installing unzip
+    yum:
+      name: gcc
+      state: present
+  
+  # Install gradle
   - name: Get gradle
     get_url:
       url: "https://services.gradle.org/distributions/gradle-4.10-rc-2-all.zip"
-      dest: /home/ec2-user
+      dest: /tmp/gradle-4.10-rc-2-all.zip
       
   - name: Unzip gradle
     unarchive:
-      src: "/home/ec2-user/gradle-4.10-rc-2-all.zip"
-      dest: "/opt"
+      src: /tmp/gradle-4.10-rc-2-all.zip
+      dest: /opt
       remote_src: yes
       
   - name: Create the symlink to Gradle
     file:
-      src: "/opt/gradle-4.10-rc-2/bin/gradle"
-      path: "/usr/bin/gradle"
+      src: /opt/gradle-4.10-rc-2/bin/gradle
+      path: /usr/bin/gradle
       state: link
+ 
+  # Install Yourkit
  
   - name: Get YourKit
     get_url:
       url: "https://www.yourkit.com/download/YourKit-JavaProfiler-2018.04-b81.zip"
-      dest: /home/ec2-user
+      dest: /tmp
       
   - name: Unzip YourKit
     unarchive:
-      src: "/home/ec2-user/YourKit-JavaProfiler-2018.04-b81.zip"
+      src: "/tmp/YourKit-JavaProfiler-2018.04-b81.zip"
       dest: "/opt"
       remote_src: yes
       
@@ -40,13 +54,53 @@
       path: "/usr/bin/profiler"
       state: link
   
-  - name: Chromium
-    debug:
-      msg: "Not installing Chromium. Is it required?"
+  # Install Redis 
+  - name: Get Redis
+    get_url:
+      url: "http://download.redis.io/redis-stable.tar.gz"
+      dest: /tmp
+      
+  - name: Unarchive Redis
+    unarchive:
+      src: "/tmp/redis-stable.tar.gz"
+      dest: "/tmp"
+      remote_src: yes
   
-  - name: Redis
-    debug:
-      msg: "Not installing Redis. Is it required?"
+  # Build the default target
+  - name: Build Redis
+    make:
+      chdir: /tmp/redis-stable
+
+  # Run install target as root
+  - name: Install Redis (Make Install)
+    make:
+      chdir: /tmp/redis-stable
+      target: install
+  
+  # Install Revert Tool
+  - name: Check Revert Tool is installed before from default installation path
+    stat:
+      path: "{{ revert_tool_target_path }}"
+    register: revertToolInfo
+    
+  - name: Copy Revert Tool to host if not installed before
+    copy:
+      src: ../files/{{ revert_tool_name }}
+      dest: /tmp/{{ revert_tool_name }}
+    when: revertToolInfo.stat.exists == False
+
+  - name: Create Revert Tool directory
+    file:
+      path: "{{ revert_tool_target_path }}"
+      state: directory
+      mode: 0755
+    
+  - name: Unzip Revert Tool zip file
+    unarchive:
+      src: /tmp/{{ revert_tool_name }}
+      dest: "{{ revert_tool_target_path }}"
+      remote_src: yes
+    when: revertToolInfo.stat.exists == False
   
 
   - name: Oracle SQL Developer
