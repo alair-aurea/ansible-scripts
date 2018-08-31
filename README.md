@@ -95,10 +95,11 @@ To install Cygwin and `ansible-scripts`, follow these steps:
     $ pip2 install -r requirements.txt
     ```
 -->
-## Mac
+
+<!--## Mac
 
 T.B.D.
-
+-->
 ## Run Using Docker
 
 A docker image is available to run `ansible-scripts`. If you have docker installed, you just need to create the following tree structure in your home folder:
@@ -173,11 +174,11 @@ When a managed node (host) is available, you may run the script from the initial
 Example of inventory files can be seen below.
 
 # Advanced Topics
-
+<!--
 ## Creating Prepared Scripts
 
 ## Managing Configuration Files
-
+-->
 ## What if...
 
 ### ... I am using another linux distribution?
