@@ -59,9 +59,9 @@
 | Oracle SQL Developer            |        -        |        -       |        -       |
 | Plan Explorer                   |        -        |        X       |        X       |
 
-X	means "no need"
--	means "no installation support yet"
-+	means "installation supported"
++ <X>	means "no need"
++ <->	means "no installation support yet"
++ <+>	means "installation supported"
 
 # Installation Times
 
