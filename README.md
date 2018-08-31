@@ -45,6 +45,19 @@ If you will run `ansible-scripts` from docker, the only requirement is docker. S
 For windows managed nodes, please check [here](#windows-setup).
 
 
+# Quickstart Videos
+
+1. From setup to provisioning
+1. How to setup a Ubuntu Control Machine
+1. How to setup a Windows Control Machine
+1. How to run the tool on a Ubuntu Managed Node
+1. How to run the tool on a Windows Managed Node
+1. How to run from docker
+1. How to create a new distro
+1. How to create a new dev environment
+1. How to install a local file to a managed node
+
+
 # Installation on Control Machines
 
 We provide guides to use `ansible-scripts` on Ubuntu 16.04 and Windows. If you do not want to do the installation but still want to use `ansible-scripts` you can skip to [Run Using Docker](#run-using-docker).
