@@ -79,7 +79,7 @@ Windows isn't supported for the control machine. However, there are some workaro
 
 1. Go to [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the instructions to install and run a linux distribution inside Windows. We recommend Ubuntu 16.04. 
 
-1. Run the commands for Ununtu 16.04.
+1. Run the commands for Ubuntu 16.04.
 
 <!--
 ### Installation using Cygwin
