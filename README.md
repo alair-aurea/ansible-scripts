@@ -50,9 +50,9 @@ For windows managed nodes, please check [here](#windows-setup).
 
 # Quickstart Videos
 
-1. How to setup a Ubuntu Control Machine: [Link](#done)
+1. How to setup a Ubuntu Control Machine: [Link](https://drive.google.com/open?id=1Dv5F7-ALf6UuQ9f4GyGlJY0ji4lB45N0)
 1. How to setup a Windows Control Machine:
-1. How to run the tool on a Ubuntu Managed Node: [Link](#done)
+1. How to run the tool on a Ubuntu Managed Node: [Link](https://drive.google.com/open?id=1SBDjO8uC4Re0uoLKki-lBdtC_Nsp6mqJ)
 1. How to run the tool on a Windows Managed Node  [Link](#done)
 1. How to run from docker: [link](https://drive.google.com/open?id=1ELdMpqVwhbl_osVwRoyJMmzLhrxvkzrh)
 1. How to create a new distro [Link](#done)
