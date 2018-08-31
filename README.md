@@ -60,7 +60,7 @@
 | Plan Explorer                   |        -        |        X       |        X       |
 
 + 'X'	means "no need"
-+ '-'	means "no installation support yet"
++ '-'	means "installation not supported yet"
 + '+'	means "installation supported"
 
 # Installation Times
