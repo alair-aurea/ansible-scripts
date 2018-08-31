@@ -102,7 +102,3 @@
       remote_src: yes
     when: revertToolInfo.stat.exists == False
   
-
-  - name: Oracle SQL Developer
-    debug:
-      msg: "Not installing Oracle SQL Developer. Is it required?"
