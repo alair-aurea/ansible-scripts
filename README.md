@@ -164,7 +164,7 @@ After this step ansible can connect to windows machine with `ntlm` configuration
 
 # Usage
 
-The tool have a user interface that guides the user through the configuration process. To run it, just got to the repository root directory and run the python script `run.py`.
+The tool have a user interface that guides the user through the configuration process. To run it, just go to the repository root directory and run the python script `run.py`.
 
 ## Creating Scripts for Managed Nodes
 
