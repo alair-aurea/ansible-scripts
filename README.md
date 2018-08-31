@@ -63,19 +63,26 @@ Go to the [Quickstart](#quickstart) section to start using `ansible-scripts`.
 
 Windows isn't supported for the control machine. However, there are some workarounds to run `ansible-scripts` if you are on a windows machine. You can use:
 
-1. [Cygwin](https://cygwin.com) ( Recommended )
-1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Only Windows 10 )
+<!-- 1. [Cygwin](https://cygwin.com)( Recommended ) -->
+1. Windows Subsystem for Linux (WSL) **\[Recomended\]** ( Windows 10 only )
 1. VirtualBox or VMWare to virtualize a machine running linux
-1. Windows Subsystem for Linux (WSL) \[possibly\] ( also only Windows 10 )
+1. [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) ( Windows 10 only )
 
+### Installation using WSL
+
+1. Go to [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and follow the instructions to install and run a linux distribution inside Windows. We recommend Ubuntu 16.04. 
+
+1. Run the commands for Ununtu 16.04.
+
+<!--
 ### Installation using Cygwin
 
 To install Cygwin and `ansible-scripts`, follow these steps:
 
 1. Download Cygwin from [http://cygwin.com/setup-x86_64.exe](http://cygwin.com/setup-x86_64.exe); 
 1. To install Cygwin and all Ansible dependences, run the following command:
-    ```
-    setup-x86_64.exe -q --packages=binutils,curl,cygwin32-gcc-g++,gcc-g++,git,gmp,libffi-devel,libgmp-devel,make,nano,openssh,openssl-devel,python-crypto,python-paramiko,python2,python2-devel,python2-openssl,python2-pip,python2-setuptools
+   ```
+   setup-x86_64.exe -q --packages=binutils,curl,cygwin32-gcc-g++,gcc-g++,git,gmp,libffi-devel,libgmp-devel,make,nano,openssh,openssl-devel,python-crypto,python-paramiko,python2,python2-devel,python2-openssl,python2-pip,python2-setuptools
     ```
 1. Open Cygwin prompt and check which `pip` commando you should use:
     * Run `which pip` and `which pip2`. Do not use the command that gives you something like `cygdrive/c/...`.
@@ -87,6 +94,7 @@ To install Cygwin and `ansible-scripts`, follow these steps:
     $ cd ansible-scripts
     $ pip2 install -r requirements.txt
     ```
+-->
 ## Mac
 
 T.B.D.
@@ -174,12 +182,31 @@ Example of inventory files can be seen below.
 
 ### ... I am using another linux distribution?
 
+You can create the configuration for the distribution you are working. There is one limitation: for the package selection menu to work properly, the distribution should be supported by [Ansible's package module](https://docs.ansible.com/ansible/2.5/modules/package_module.html). 
+
+Follow this steps:
+
+1. Go to `configs` directory and add the name of your distribution to `linux.conf` under section `[distros]`;
+2. Create a section for your distro specific variables, like `[your-distro:ansible:variables]`. These variables are going to be copied to the Ansible's inventory file. Check how these variables work in [Ansible's Variables Document](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html).
+3. Create a section for each one of the supported dev environments, like `[your-distro:Java:package]` or `[your-distro:C++:package]`. Add the packages that should be available in the menu.
+4. Create prepared task files to perform preparation tasks and post installation tasks.
+
 ### ... some package is broken on the repository?
+
+You don't need to change the `configs` to manage this situation. You can just disable the package using the menu and select the option to install additional packages, writing the correct name of the package there. However, if you want a more definitive solution, you may change the package name on the corresponding os config file.
 
 ### ... I need a tool that is not being installed?
 
-### ... I want to use this to configure Dev environment?
+If the tool is available in the repositories (chocolatey for windows or distro specific repository for linux), you may just chose to install additional packages and write the package name when asked. This will create a proper script for installing the package. If you want this package to be available on the package selection menu, you have to include the package in section `distro:dev-env:packages`, where `dev-env` is the type of your development environment (Java, .NET, ...). You can make the package marked to be installed as default by writing `=yes` following the package name. Otherwise, write `=no`.
+
+If the package is not available in the repositories, you'll have to write a task for installing it. Write a prepared task and select the created file when prompted during Host Configuration Creation. Please, refer to the [Ansible's manual](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html) to understand how to create tasks.
 
 ### ... there is a tool in pre / post tasks hat I don't need/want to be installed?
 
+Just go to `prepared-tasks` directory and open the prepared playbook containing the tasks that install the tool you want to remove. You can eiter delete the corresponding lines or better, you can copy the file and create a new one without the tool you don't want. 
+
 ### ... I don't like ansible and prefer \[write here any other scripting language\]
+
+You can use `ansible-scripts` to copy your script file written on your prefered language to the monitored node, using Ansible's [copy module](https://docs.ansible.com/ansible/2.5/modules/copy_module.html) and [command module](https://docs.ansible.com/ansible/2.5/modules/command_module.html).
+
+### ... I want to use this tool to configure Dev environment?
