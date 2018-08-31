@@ -1,3 +1,4 @@
+- [Supported Tools](#supported-tools)
 - [Requirements](#requirements)
   * [Local Machine / Control Machine](#local-machine---control-machine)
   * [Remote Machine / Managed Node](#remote-machine---managed-node)
@@ -24,8 +25,42 @@
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
+# Supported Tools
 
+|            TOOL NAME            | Windows Support | Ubuntu Support | Amazon Support |
+|:-------------------------------:|:---------------:|:--------------:|:--------------:|
+| Oracle JDK 8                    |        +        |        +       |        +       |
+| Maven                           |        +        |        +       |        +       |
+| Docker & Docker Compose         |        +        |        +       |        +       |
+| MySql Server                    |        +        |        +       |        +       |
+| Nodejs                          |        +        |        +       |        +       |
+| Npm                             |        +        |        +       |        +       |
+| Cygwin                          |        +        |        X       |        X       |
+| Notepad++                       |        +        |        X       |        X       |
+| Eclipse                         |        +        |        X       |        X       |
+| Visual Studio 2015              |        +        |        X       |        X       |
+| Visual Studio 2017              |        +        |        X       |        X       |
+| JetBrains dotTrace              |        +        |        X       |        X       |
+| Telerik Fiddler                 |        +        |        X       |        X       |
+| VS Code                         |        +        |        X       |        X       |
+| MS SQL Server management Studio |        +        |        X       |        X       |
+| Total Commander                 |        +        |        X       |        X       |
+| Sysinternals suite              |        +        |        X       |        X       |
+| Gradle                          |        +        |        +       |        +       |
+| YourKit Java profiler           |        +        |        +       |        +       |
+| GIT                             |        +        |        +       |        +       |
+| Revert Tool                     |        +        |        +       |        +       |
+| Chrome                          |        +        |        +       |        -       |
+| IntelliJ IDEA                   |        +        |        -       |        -       |
+| Redis                           |        +        |        +       |        -       |
+| Firefox Mozilla                 |        +        |        +       |        -       |
+| MySQL Workbench                 |        -        |        +       |        -       |
+| Oracle SQL Developer            |        -        |        -       |        -       |
+| Plan Explorer                   |        -        |        X       |        X       |
 
+X	means "no need"
+-	means "no installation support yet"
++	means "installation supported"
 
 # Requirements
 
