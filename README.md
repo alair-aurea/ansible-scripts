@@ -235,6 +235,8 @@ Example of inventory files can be seen below.
 
 # Installation Times
 
+The following installation times were measured considering a full installation, with all the tools. Windows time reflect the fact that there are more tools being installed. If you taylor your installation to your specific needs, this times might change.
+
 | Operating System | Technology Category | All Tools in Category Installation Time |
 |:----------------:|:-------------------:|:---------------------------------------:|
 |      Windows     |         Java        |               14mins 3secs              |
