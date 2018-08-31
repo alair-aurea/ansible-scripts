@@ -72,7 +72,14 @@ Windows isn't supported for the control machine. However, there are some workaro
 
 To install Cygwin and `ansible-scripts`, follow these steps:
 
-1. Download cygwin: [http://cygwin.com/setup-x86_64.exe](http://cygwin.com/setup-x86_64.exe);
+1. Download Cygwin from [http://cygwin.com/setup-x86_64.exe](http://cygwin.com/setup-x86_64.exe); 
+1. To install Cygwin and all Ansible dependences, run the following command:
+    ```
+    setup-x86_64.exe -q --packages=binutils,curl,cygwin32-gcc-g++,gcc-g++,git,gmp,libffi-devel,libgmp-devel,make,nano,openssh,openssl-devel,python-crypto,python-paramiko,python2,python2-devel,python2-openssl,python2-pip,python2-setuptools
+    ```
+1. Open Cygwin prompt and check which `pip` commando you should use:
+    * Run `which pip` and `which pip2`. Do not use the command that gives you something like `cygdrive/c/...`.
+1. From Cygwin bash run `pip install ansible` or `pip2 install ansible`, depending on the results of the previous command.
 
 ## Mac
 
@@ -168,3 +175,5 @@ Example of inventory files can be seen below.
 ### ... I want to use this to configure Dev environment?
 
 ### ... there is a tool in pre / post tasks hat I don't need/want to be installed?
+
+### ... I don't like ansible and prefer \[write here any other scripting language\]
