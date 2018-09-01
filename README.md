@@ -2,12 +2,14 @@
 
 Ansible-Scripts is a tool that intends to automate the process of provisioning development environments. It was mostly designed with two conflicting goals in mind: 1) being easy to use; 2) being very flexible. The structure we devised to (try to) achieve these goals is:
 
-1. Having a configuration file that allows the user to define some basic templates, targeting specific (and customizable) operating systems and development environments;
-2. Having a set of prepared scripts preconfigured that provide the basic needs to some dev environments;
+1. Having a configuration file (`.conf` stored on `configs` directory) that allows the user to define some basic templates, targeting specific (and customizable) operating systems and development environments;
+2. Having a set of prepared scripts preconfigured (`.yml` files stored on `prepared-tasks` directory) that provide the basic needs to some dev environments;
 3. Allowing the user to create its own prepared scripts, to provide the flexibility without compromising the easiness of use;
-4. Providing a frontend for scripting creation, that automate most of the tasks required to create Ansible scripts.
+4. Providing a frontend that automates most of the tasks required to create Ansible scripts.
 
-Ansible-scripts, of course, is build over ansible.
+Ansible-scripts, of course, is build over Ansible.
+
+If you want to see it in action, go to the [video sections](#quickstart-videos) and [try it](#running-using-docker) using docker.
 
 # Table of Contents
 
