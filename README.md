@@ -1,3 +1,18 @@
+# Introduction
+
+Ansible-Scripts is a tool that intends to automate the process of provisioning development environments. It was mostly designed with two conflicting goals in mind: 1) being easy to use; 2) being very flexible. The structure we devised to (try to) achieve these goals is:
+
+1. Having a configuration file (`.conf` stored on `configs` directory) that allows the user to define some basic templates, targeting specific (and customizable) operating systems and development environments;
+2. Having a set of prepared scripts preconfigured (`.yml` files stored on `prepared-tasks` directory) that provide the basic needs to some dev environments;
+3. Allowing the user to create its own prepared scripts, to provide the flexibility without compromising the easiness of use;
+4. Providing a frontend that automates most of the tasks required to create Ansible scripts.
+
+Ansible-scripts, of course, is build over Ansible.
+
+If you want to see it in action, go to the [video sections](#quickstart-videos) and [try it](#running-using-docker) using docker.
+
+# Table of Contents
+
 - [Requirements](#requirements)
   * [Local Machine / Control Machine](#local-machine---control-machine)
   * [Remote Machine / Managed Node](#remote-machine---managed-node)
@@ -28,7 +43,6 @@
     + [... I don't like ansible and prefer \[write here any other scripting language\]](#-i-don-t-like-ansible-and-prefer---write-here-any-other-scripting-language--)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 # Requirements
 
@@ -196,6 +210,8 @@ Example of inventory files can be seen below.
 
 
 # Preconfigured Tool Sets
+
+The following tools were preconfigured using `.conf` files and prepared tasks. Other tools might be easily added to installation scripts if they are available through distro respositories. If not available in the repositories, a preparation task file or a post-installation task file may be created to add support. 
 
 |            TOOL NAME            | Windows Support | Ubuntu Support | Amazon Support |
 |:-------------------------------:|:---------------:|:--------------:|:--------------:|
